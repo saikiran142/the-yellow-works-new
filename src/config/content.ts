@@ -11,6 +11,9 @@ export const navigation = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+/** Hero headline endings. The first is server-rendered; typing cycles through all three. */
+export const heroPhrases = ["the one they choose.", "the name locals trust.", "easy to find, hard to forget."] as const;
+
 export const tickerItems = ["CLINICS", "GYMS", "REAL ESTATE", "LOCAL BRANDS", "GROWING BUSINESSES"] as const;
 
 export type IndustryKey = "clinic" | "gym" | "realty";
@@ -35,7 +38,7 @@ export const industries: Industry[] = [
     headline: ["Build trust before ", "the first visit."],
     body: "A clear, calm website for your clinic: who you are, what you treat, and an easy way to ask for an appointment.",
     features: ["Doctor profiles", "Services and treatments", "Appointment requests", "Location", "WhatsApp enquiry", "Contact details"],
-    tint: "var(--yw-clinic)",
+    tint: "var(--yw-mist)",
     on: "var(--yw-dusk)",
     phone: { title: "Book an appointment", rows: ["Mon", "Tue", "Wed"], slots: ["9:30", "10:15", "11:00"], cta: "Request appointment", note: "Appointment requested" },
     object: "/3d/icon-appointment-card.png",
@@ -46,7 +49,7 @@ export const industries: Industry[] = [
     headline: ["Turn interest into ", "memberships."],
     body: "Show your plans, trainers and classes, and make a trial one tap away.",
     features: ["Membership plans", "Trainer profiles", "Class schedules", "Trial requests", "Fitness gallery", "Enquiry forms"],
-    tint: "var(--yw-gym)",
+    tint: "var(--yw-butter)",
     on: "var(--yw-dusk)",
     phone: { title: "Join a gym", rows: ["Monthly", "Annual"], slots: ["Trial", "Plan"], cta: "Start a free trial", note: "Trial booked" },
     object: "/3d/icon-kettlebell.png",
@@ -57,8 +60,8 @@ export const industries: Industry[] = [
     headline: ["Put properties in front of ", "the right buyers."],
     body: "Showcase listings and projects, and turn interest into booked site visits.",
     features: ["Property showcases", "Project galleries", "Property enquiry forms", "Site-visit requests", "Location details", "Contact options"],
-    tint: "var(--yw-realty)",
-    on: "#ffffff",
+    tint: "var(--yw-slate)",
+    on: "var(--yw-paper)",
     phone: { title: "Schedule a site visit", rows: ["Fri", "Sat", "Sun"], slots: ["11:00", "2:30"], cta: "Request site visit", note: "Site visit Saturday 11:00" },
     object: "/3d/icon-appointment-card.png",
   },
@@ -68,21 +71,21 @@ export const industries: Industry[] = [
 export const scenarios = [
   {
     tab: "A patient looking for a clinic",
-    accent: "var(--yw-clinic)",
+    accent: "var(--yw-mist)",
     before: { name: "Greenleaf Dental Clinic", text: "Welcome to our clinic. We offer many services. Click here to see more.", cta: "Contact Us" },
     after: { name: "Greenleaf Dental Clinic", text: "Gentle, modern dental care. Book a check-up in under a minute.", cta: "Request appointment" },
     chips: ["9:30", "10:15", "11:00", "2:45"],
   },
   {
     tab: "A customer looking for a gym",
-    accent: "var(--yw-gym)",
+    accent: "var(--yw-butter)",
     before: { name: "IronCore Fitness", text: "We have a gym. Equipment and trainers available. Call for prices.", cta: "Click Here" },
     after: { name: "IronCore Fitness", text: "Find your plan, meet your trainer, start with a free trial.", cta: "Start a free trial" },
     chips: ["Monthly", "Annual", "Trial"],
   },
   {
     tab: "A buyer looking for a property",
-    accent: "var(--yw-realty)",
+    accent: "var(--yw-slate)",
     before: { name: "Haven Properties", text: "Properties for sale. See list below. Contact the office.", cta: "Enquire" },
     after: { name: "Haven Properties", text: "Find the right home. Book a site visit for Saturday.", cta: "Schedule a site visit" },
     chips: ["Fri", "Sat", "Sun"],
@@ -105,9 +108,9 @@ export const services = [
 ] as const;
 
 export const showcase = [
-  { tab: "Clinic", accent: "var(--yw-clinic)", text: "var(--yw-dusk)", url: "greenleaf-dental.example", name: "Greenleaf Dental Clinic", hero: "Gentle, modern dental care", rows: ["Check-ups", "Whitening", "Emergency visits"] },
-  { tab: "Gym", accent: "var(--yw-gym)", text: "var(--yw-dusk)", url: "ironcore-fitness.example", name: "IronCore Fitness", hero: "Find your plan. Start free.", rows: ["Monthly plan", "Meet the trainers", "Class schedule"] },
-  { tab: "Real estate", accent: "var(--yw-realty)", text: "#ffffff", url: "haven-properties.example", name: "Haven Properties", hero: "Homes worth a visit", rows: ["2 BHK, new build", "Villa with garden", "Plot near the highway"] },
+  { tab: "Clinic", accent: "var(--yw-mist)", text: "var(--yw-dusk)", url: "greenleaf-dental.example", name: "Greenleaf Dental Clinic", hero: "Gentle, modern dental care", rows: ["Check-ups", "Whitening", "Emergency visits"] },
+  { tab: "Gym", accent: "var(--yw-butter)", text: "var(--yw-dusk)", url: "ironcore-fitness.example", name: "IronCore Fitness", hero: "Find your plan. Start free.", rows: ["Monthly plan", "Meet the trainers", "Class schedule"] },
+  { tab: "Real estate", accent: "var(--yw-slate)", text: "var(--yw-paper)", url: "haven-properties.example", name: "Haven Properties", hero: "Homes worth a visit", rows: ["2 BHK, new build", "Villa with garden", "Plot near the highway"] },
 ] as const;
 
 export const whyPoints = [
@@ -146,8 +149,8 @@ export const faqs = [
 ] as const;
 
 export const businessTypes = [
-  { key: "clinic", label: "Clinic", accent: "var(--yw-clinic)", on: "var(--yw-dusk)" },
-  { key: "gym", label: "Gym", accent: "var(--yw-gym)", on: "var(--yw-dusk)" },
-  { key: "realty", label: "Real estate", accent: "var(--yw-realty)", on: "#ffffff" },
+  { key: "clinic", label: "Clinic", accent: "var(--yw-mist)", on: "var(--yw-dusk)" },
+  { key: "gym", label: "Gym", accent: "var(--yw-butter)", on: "var(--yw-dusk)" },
+  { key: "realty", label: "Real estate", accent: "var(--yw-slate)", on: "var(--yw-paper)" },
   { key: "other", label: "Other", accent: "var(--yw-sun)", on: "var(--yw-dusk)" },
 ] as const;

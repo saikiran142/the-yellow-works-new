@@ -28,7 +28,7 @@ Short, commercially meaningful headlines. Write for a clinic, gym or property ow
 **Not done yet:** formal conflict checks (see DECISIONS D-15), the 3D GLB of the cube (part of the hero 3D work), and a check of the animated logo on a real mid-range phone.
 
 ## Colour (starting tokens; Phase 1 verifies every pairing)
-Sun `#FFD52A` · Marigold `#FF9F1C` · Dusk Ink `#16142B` · Twilight `#2A2160` · Paper `#FFFCF2` · Butter `#FFF1B8`.
+Sun `#FFD52A` (the only accent) · Sun Deep `#B8920A` (pressed edge) · Dusk Ink `#16142B` · Twilight `#241F4D` · Slate `#3A3763` · Mist `#E9E8F1` · Paper `#FFFCF2` · Butter `#FFF1B8`. Industry colours were retired: sections differ by tonal surface, not hue.
 Industry: Clinic Mint `#2FD4A7` · Gym Coral `#FF5A36` · Realty Cobalt `#4456FF`.
 Gradients: Spotlight (radial, light only) and Dusk sky (hero and footer only). No gradient text, meshes or purple-blue gradients.
 Rules: yellow, mint or butter on Paper is never text. White on Coral is large text only. Light-page proportions ≈ 60% Paper/Butter, 25% Dusk, 10% yellow, 5% accents.

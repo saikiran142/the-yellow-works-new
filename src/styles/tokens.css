@@ -8,16 +8,15 @@
 :root {
   /* ---- colour: core ---- */
   --yw-sun: #FFD52A;        /* Highlighter Yellow: primary buttons, swipes, the lit cube */
-  --yw-marigold: #FF9F1C;   /* warm depth: pressed states, hot centre of glows */
+  --yw-sun-deep: #B8920A;   /* darker sun: pressed edge only (same hue, no orange) */
   --yw-dusk: #16142B;       /* Dusk Ink: hero stage, dark sections, primary text */
-  --yw-twilight: #2A2160;   /* second dark: hero sky, dark cards */
+  --yw-twilight: #241F4D;   /* second dark: hero sky, dark cards */
   --yw-paper: #FFFCF2;      /* main light background */
   --yw-butter: #FFF1B8;     /* soft tint: alternate sections, form fields, chips */
 
-  /* ---- colour: industry accents (section tint, showcase tab, 3D object, form chip) ---- */
-  --yw-clinic: #2FD4A7;     /* Dusk text 9.49:1 */
-  --yw-gym: #FF5A36;        /* Dusk text 5.79:1; white text only large (3.10:1) */
-  --yw-realty: #4456FF;     /* white text 5.22:1; Dusk text only large (3.44:1) */
+  /* ---- colour: neutral tints (monochromatic navy family; Sun is the only accent) ---- */
+  --yw-mist: #E9E8F1;       /* cool tint: alternate surfaces. Dusk text 13:1 */
+  --yw-slate: #3A3763;      /* mid navy: dark tint surfaces. Paper text 10:1 */
 
   /* ---- colour: roles (dark and light page) ---- */
   --yw-text: var(--yw-dusk);
@@ -30,7 +29,7 @@
   --yw-focus: var(--yw-twilight);   /* focus ring on light; use --yw-sun on dark */
 
   /* ---- gradients: light only, never decoration ---- */
-  --yw-grad-spotlight: radial-gradient(closest-side, var(--yw-butter), var(--yw-sun) 45%, var(--yw-marigold) 70%, transparent);
+  --yw-grad-spotlight: radial-gradient(closest-side, var(--yw-butter), var(--yw-sun) 55%, transparent);
   --yw-grad-dusk-sky: linear-gradient(180deg, var(--yw-twilight), var(--yw-dusk));
 
   /* ---- typography ---- */
@@ -87,12 +86,12 @@
   --yw-radius-pill: 999px;
 
   /* ---- elevation (tactile press, soft light shadows; no identical grey card shadow everywhere) ---- */
-  --yw-shadow-press: 0 4px 0 var(--yw-marigold);          /* yellow button */
+  --yw-shadow-press: 0 4px 0 var(--yw-sun-deep);          /* yellow button */
   --yw-shadow-press-dark: 0 4px 0 #000;                   /* dark button */
-  --yw-shadow-press-active: 0 1px 0 var(--yw-marigold);
+  --yw-shadow-press-active: 0 1px 0 var(--yw-sun-deep);
   --yw-shadow-panel: 0 14px 34px rgb(22 20 43 / 0.28);    /* floating panels on Dusk */
   --yw-shadow-lift: 0 18px 40px rgb(22 20 43 / 0.14);     /* phone mockups on Paper */
-  --yw-glow: 0 0 40px 6px rgb(255 213 42 / 0.35);         /* lit objects only */
+  --yw-glow: 0 0 40px 6px rgb(255 213 42 / 0.22);         /* lit objects only */
 
   /* ---- motion ---- */
   --yw-dur-fast: 150ms;             /* press, toggle, colour change */
@@ -123,14 +122,13 @@
 @theme inline {
   --color-*: initial;                       /* remove default palette so only brand colours exist */
   --color-sun: var(--yw-sun);
-  --color-marigold: var(--yw-marigold);
+  --color-sun-deep: var(--yw-sun-deep);
   --color-dusk: var(--yw-dusk);
   --color-twilight: var(--yw-twilight);
   --color-paper: var(--yw-paper);
   --color-butter: var(--yw-butter);
-  --color-clinic: var(--yw-clinic);
-  --color-gym: var(--yw-gym);
-  --color-realty: var(--yw-realty);
+  --color-mist: var(--yw-mist);
+  --color-slate: var(--yw-slate);
   --color-white: #ffffff;
   --color-black: #000000;
   --color-transparent: transparent;

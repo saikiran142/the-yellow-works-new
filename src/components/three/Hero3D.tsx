@@ -28,25 +28,29 @@ function Cube() {
   useFrame((state) => {
     const g = group.current;
     if (!g) return;
-    g.rotation.y += (state.pointer.x * 0.35 - g.rotation.y) * 0.06;
-    g.rotation.x += (-state.pointer.y * 0.2 - g.rotation.x) * 0.06;
+    const t = state.clock.elapsedTime;
+    // entrance: scale in over ~1s; idle: slow sway so the Y always catches light
+    const k = Math.min(1, t / 1);
+    g.scale.setScalar(0.6 + 0.4 * (1 - Math.pow(1 - k, 3)));
+    g.rotation.y += (state.pointer.x * 0.35 + Math.sin(t * 0.6) * 0.18 + (1 - k) * 1.2 - g.rotation.y) * 0.06;
+    g.rotation.x += (-state.pointer.y * 0.2 + Math.cos(t * 0.5) * 0.06 - g.rotation.x) * 0.06;
   });
 
   return (
     <group ref={group}>
       <mesh geometry={body}>
-        <meshStandardMaterial color="#4b40b8" roughness={0.55} />
+        <meshStandardMaterial color="#3A3763" roughness={0.55} />
       </mesh>
       {bars.map((b, i) => (
         <mesh key={i} geometry={b.geo} position={[b.p[0], b.p[1], b.p[2]]}>
-          <meshStandardMaterial color="#FFD52A" emissive="#FF9F1C" emissiveIntensity={0.45} roughness={0.4} />
+          <meshStandardMaterial color="#FFD52A" emissive="#FFD52A" emissiveIntensity={0.25} roughness={0.4} />
         </mesh>
       ))}
       <mesh position={[1, 1, 1]}>
         <sphereGeometry args={[0.34, 32, 24]} />
-        <meshStandardMaterial color="#FFF1B8" emissive="#FF9F1C" emissiveIntensity={0.6} roughness={0.4} />
+        <meshStandardMaterial color="#FFF1B8" emissive="#FFD52A" emissiveIntensity={0.35} roughness={0.4} />
       </mesh>
-      <pointLight position={[1.9, 1.9, 1.9]} color="#FF9F1C" intensity={14} distance={7} decay={2} />
+      <pointLight position={[1.9, 1.9, 1.9]} color="#FFD52A" intensity={9} distance={7} decay={2} />
     </group>
   );
 }
@@ -77,9 +81,9 @@ export default function Hero3D({ onReady }: { onReady: () => void }) {
         gl={{ alpha: true, antialias: true, powerPreference: "default" }}
         onCreated={({ camera }) => { camera.lookAt(0, 0.05, 0); onReady(); }}
       >
-        <hemisphereLight args={["#FFF1B8", "#2A2160", 1.3]} />
+        <hemisphereLight args={["#FFF1B8", "#241F4D", 1.3]} />
         <directionalLight position={[-5, 9, 6]} color="#FFE2B0" intensity={1.8} />
-        <directionalLight position={[6, 2, 7]} color="#FF9F1C" intensity={0.9} />
+        <directionalLight position={[6, 2, 7]} color="#FFE9A0" intensity={0.7} />
         <Cube />
       </Canvas>
     </div>

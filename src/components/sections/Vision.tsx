@@ -6,9 +6,9 @@ export function Vision() {
     <section className="sec vis" id="vision">
       <div className="w">
         <h2 className="h2">Your website is the beginning. Growth is the bigger picture.</h2>
-        <p className="lead" style={{ color: "var(--yw-text-on-dark-muted)" }}>We are working toward smarter lead management, follow-ups and business automation. None of that is available yet: what you can buy today is the website.</p>
-        <ul className="pipe" aria-label="Where a visitor goes" style={{ listStyle: "none", padding: 0 }}>
-          <li className="tok" aria-hidden="true" style={{ position: "absolute" }} />
+        <p className="lead">We are working toward smarter lead management, follow-ups and business automation. None of that is available yet: what you can buy today is the website.</p>
+        <ul className="pipe" aria-label="Where a visitor goes">
+          <li className="tok" aria-hidden="true" />
           {pipeline.map((p) => (
             <li key={p.label} className="stg">
               {p.label}

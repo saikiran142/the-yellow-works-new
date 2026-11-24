@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative logo round</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#FFD52A;--marigold:#FF9F1C;--dusk:#16142B;--twilight:#2A2160;--paper:#FFFCF2;--butter:#FFF1B8;
+--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}svg{display:block;max-width:100%;height:auto}
+body{margin:0;background:var(--dusk);color:var(--paper);font:16px/1.55 var(--body)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.intro{padding:52px 0 36px}
+.intro h1{font:800 clamp(36px,6.5vw,80px)/.98 var(--display);letter-spacing:-.045em;margin:0 0 16px;max-width:14ch}
+.intro p{max-width:64ch;color:#FFFCF2c0;margin:0 0 10px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:28px}
+.gal a{background:#1f1c3a;border-radius:18px;padding:22px 10px 12px;display:grid;justify-items:center;gap:12px;color:var(--paper);text-decoration:none;font-size:13px}
+.gal a:hover,.gal a:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.gal svg{width:84px;height:84px}
+
+section.cn{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;padding:12px 0}
+.stage{background:#100f22;border-radius:24px;min-height:460px;display:grid;place-items:center;position:relative;padding:28px;overflow:hidden}
+.stage:before{content:"";position:absolute;inset:auto 10% -30% 10%;height:60%;background:radial-gradient(50% 60% at 50% 100%,#FFD52A1f,transparent 70%)}
+.stage svg.big{width:min(300px,70%);height:auto;position:relative}
+.stage .no{position:absolute;left:20px;top:16px;font:600 13px var(--body);color:#FFFCF2a0}
+.side{display:grid;gap:12px;grid-template-rows:auto auto 1fr}
+.info{background:#1f1c3a;border-radius:24px;padding:24px}
+.info h2{font:800 clamp(30px,3.6vw,46px)/1 var(--display);letter-spacing:-.04em;margin:0 0 12px}
+.info p{margin:0 0 8px;color:#FFFCF2d0;font-size:15px}
+.info .hid{color:var(--sun)}
+.info .risk{font-size:13px;color:#FFFCF299}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tl{border-radius:20px;aspect-ratio:1;display:grid;place-items:center;position:relative}
+.tl svg{width:58%}
+.tl small{position:absolute;left:12px;bottom:8px;font-size:11px;opacity:.7}
+.tl.p{background:var(--paper);color:var(--dusk)}.tl.y{background:var(--sun);color:var(--dusk)}
+.tl.s{background:#1f1c3a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}
+.tl.s .row{display:flex;gap:10px;align-items:flex-end}.tl.s .row svg{width:auto}
+.av{width:46px;height:46px;border-radius:50%;background:var(--dusk);border:1px solid #ffffff22;display:grid;place-items:center;overflow:hidden}
+.av svg{width:64%}
+.lock{background:var(--paper);color:var(--dusk);border-radius:20px;display:flex;align-items:center;justify-content:center;gap:14px;padding:22px 16px;min-height:110px}
+.lock svg{width:52px;flex:none}
+.lock .wm,.wm{font:800 clamp(20px,2.6vw,30px)/1 var(--display);letter-spacing:-.045em;white-space:nowrap}
+.foot{padding:40px 0 64px;color:#FFFCF2c0}.foot h2{color:var(--paper);font:800 34px/1.05 var(--display);letter-spacing:-.03em;margin:0 0 10px}
+
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.35}}
+.anim .bulb{animation:tw 1.8s ease-in-out infinite}
+.anim .bulb:nth-child(3n){animation-delay:.6s}.anim .bulb:nth-child(3n+1){animation-delay:1.2s}
+@media (prefers-reduced-motion:reduce){.anim *{animation:none!important}}
+@media (max-width:900px){section.cn{grid-template-columns:1fr}.stage{min-height:320px}}
+@media (max-width:480px){.tiles{grid-template-columns:1fr 1fr}.tl.s{grid-column:1/-1;aspect-ratio:auto;padding:18px;flex-direction:row}.lock{flex-direction:column}}
+</style></head><body>
+
+<div class="wrap intro">
+<h1>Seven ideas with a trick inside</h1>
+<p>A memorable logo usually hides a small idea you notice on the second look. Each of these has one: a letter hidden in a 3D form, a road that makes a choice, a W made from two beams of light.</p>
+<p>Shown big first, then on Paper, in one colour, at favicon size, as an avatar and next to the name. Concept drawings, not final vectors.</p>
+<div class="gal" id="gal"></div>
+</div>
+
+<main class="wrap" id="out"></main>
+
+<div class="wrap foot">
+<h2>Which ones make you look twice?</h2>
+<p>Pick one or two. If none land, tell me which idea came closest and why. I can also explore in a completely different style, such as hand-drawn, retro Indian signage or a pure lettering mark.</p>
+</div>
+
+<noscript><p class="wrap">This sheet draws the marks with JavaScript.</p></noscript>
+<script>
+const T={
+ dark:{bg:'#16142B',ink:'#FFFCF2',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',dim:'rgba(255,252,242,.2)',glow:true},
+ stage:{bg:'#100f22',ink:'#FFFCF2',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',dim:'rgba(255,252,242,.2)',glow:true},
+ light:{bg:'#FFFCF2',ink:'#16142B',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',dim:'rgba(22,20,43,.16)'},
+ mono:{bg:'#FFD52A',ink:'#16142B',on:'#FFD52A',lit:'#16142B',lit2:'#16142B',soft:'#16142B',dim:'#16142B',mono:true}
+};
+let n=0;const uid=()=>'u'+(n++);
+
+const Yg=['10001','10001','01010','00100','00100','00100','00100'];
+const Wg=['10001','10001','10001','10101','10101','11011','10001'];
+
+const C=[
+{no:1,name:'Cube Y',
+ idea:'A solid yellow building block, lit from above.',
+ hid:'Look at the edges where the three faces meet: they draw a Y.',
+ risk:'Isometric cubes are used by some tech brands, so the colour split and the visible Y gap are what make it ours. It is also the natural 3D object for the hero.',
+ d:(c,sm)=>{const [a,b,d]=c.mono?[c.ink,c.ink,c.ink]:c.glow?[c.soft,c.lit,c.lit2]:[c.lit,c.lit2,c.ink];
+  return `<polygon points="60,8 105,34 60,60 15,34" fill="${a}"/><polygon points="15,34 60,60 60,112 15,86" fill="${b}"/><polygon points="60,60 105,34 105,86 60,112" fill="${d}"/>
+  <path d="M60 60 L13 33 M60 60 L107 33 M60 60 V114" stroke="${c.bg}" stroke-width="${sm?8:5}" stroke-linecap="round"/>`}},
+{no:2,name:'The choice',
+ idea:'A fork in the road, seen from above. One way is lit.',
+ hid:'The roads form a Y, and the lit path is the business that gets chosen. It is the headline, “Make your business the one they choose”, as a single shape.',
+ risk:'It needs its road markings to read as a road. At 16 px it becomes a simple two-tone Y, which still works.',
+ d:(c,sm)=>{const w=sm?28:22,L='M60 62 L20 2',P='M60 120 V62 L100 2';
+  let s=`<g fill="none" stroke-linejoin="round"><path d="${L}" stroke="${c.mono?c.ink:c.dim}" stroke-width="${w}"/>`;
+  if(c.mono)s+=`<path d="${L}" stroke="${c.bg}" stroke-width="${w-9}"/>`;
+  s+=`<path d="${P}" stroke="${c.mono?c.ink:c.lit}" stroke-width="${w}"/>`;
+  if(!sm)s+=`<path d="${P}" stroke="${c.mono?c.bg:c.on}" stroke-width="2.6" stroke-dasharray="6 7"/>`;
+  return s+'</g>'}},
+{no:3,name:'Spotlights W',
+ idea:'Two spotlights on the ground, each throwing a beam of light upward.',
+ hid:'Side by side, the two beams make a W. Works, in the spotlight.',
+ risk:'Reads as two V’s at first glance on some backgrounds. The lamps at the base are what tell the story, so they stay at every size above 24 px.',
+ d:(c,sm)=>{const g=uid();const F=c.mono?c.ink:`url(#${g})`;
+  return `<defs><linearGradient id="${g}" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${c.glow?c.lit:c.lit2}"/><stop offset="1" stop-color="${c.glow?c.soft:c.lit}"/></linearGradient></defs>
+  <polygon points="42,${sm?110:98} 2,8 58,8" fill="${F}"/><polygon points="78,${sm?110:98} 62,8 118,8" fill="${F}"/>
+  ${sm?'':`<path d="M28 112 A14 14 0 0 1 56 112 Z" fill="${c.ink}"/><path d="M64 112 A14 14 0 0 1 92 112 Z" fill="${c.ink}"/><rect x="22" y="110" width="76" height="4" rx="2" fill="${c.ink}"/>`}`}},
+{no:4,name:'Folded W',
+ idea:'A single strip of yellow paper, folded four times.',
+ hid:'The folds make a W, and the back of the paper shows in marigold at every turn. It feels made by hand, which is what a studio sells.',
+ risk:'The fold only reads when the two colours are both present. In one colour it relies on thin crease lines.',
+ d:(c,sm)=>{const a=c.mono?c.ink:c.lit,b=c.mono?c.ink:c.lit2;
+  const S=[['4,14 28,14 48,106 24,106',a],['24,106 48,106 72,44 48,44',b],['48,44 72,44 96,106 72,106',a],['72,106 96,106 116,14 92,14',b]];
+  return S.map(([p,f])=>`<polygon points="${p}" fill="${f}" stroke="${f}" stroke-width=".6" stroke-linejoin="round"/>`).join('')+(c.mono?`<path d="M24 106 H48 M48 44 H72 M72 106 H96" stroke="${c.bg}" stroke-width="${sm?5:3}"/>`:'')}},
+{no:5,name:'Marquee',anim:true,
+ idea:'YW spelled in light bulbs on a dark board, like a cinema hoarding or a festival sign.',
+ hid:'The unlit bulbs stay faintly visible, so you see the letters switch on out of a dark grid. Lights on, quite literally, and very Indian.',
+ risk:'Bulb letters cannot be read at 16 px, so the favicon uses a single bulb-drawn Y.',
+ d:(c,sm)=>{const g=uid();let off='',on='';
+  if(sm){for(let r=0;r<7;r++)for(let k=0;k<5;k++)if(Yg[r][k]==='1')on+=`<circle cx="${28+k*16}" cy="${12+r*16}" r="6.5"/>`;
+   return `<rect x="0" y="0" width="120" height="120" rx="22" fill="${c.mono?c.ink:'#16142B'}"/><g fill="${c.mono?c.bg:c.lit}">${on}</g>`}
+  for(let r=0;r<7;r++)for(let k=0;k<11;k++){const x=10+k*10,y=30+r*10;
+   const lit=k<5?Yg[r][k]==='1':k>5?Wg[r][k-6]==='1':false;
+   if(lit)on+=`<circle class="bulb" cx="${x}" cy="${y}" r="4.3"/>`;else off+=`<circle cx="${x}" cy="${y}" r="1.8"/>`}
+  return `<defs><filter id="${g}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"/></filter></defs>
+  <rect x="1" y="19" width="118" height="82" rx="14" fill="${c.mono?c.ink:'#1f1c3a'}"/>
+  <g fill="${c.mono?'#FFD52A44':'rgba(255,252,242,.16)'}">${off}</g>
+  ${c.mono?'':`<g fill="${c.lit2}" filter="url(#${g})" opacity=".9">${on.replaceAll('class="bulb" ','')}</g>`}
+  <g fill="${c.mono?c.bg:c.lit}">${on}</g>`}},
+{no:6,name:'Street light',
+ idea:'A double-armed street lamp, the kind that lines Indian roads, with two lamps throwing light down.',
+ hid:'The pole and arms are a Y. We are the light on your street.',
+ risk:'More illustrative than the others. Fine detail like the light cones drops away in one colour.',
+ d:(c,sm)=>{const g=uid();const sw=sm?13:9;
+  return `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.lit}" stop-opacity="${c.glow?.95:1}"/><stop offset="1" stop-color="${c.glow?c.lit2:c.lit}" stop-opacity="${c.glow?.15:.85}"/></linearGradient></defs>
+  ${c.mono?'':`<polygon points="14,40 34,40 46,108 2,108" fill="url(#${g})"/><polygon points="86,40 106,40 118,108 74,108" fill="url(#${g})"/>`}
+  <g fill="none" stroke="${c.ink}" stroke-width="${sw}" stroke-linecap="round"><path d="M60 114 V70"/><path d="M60 74 C60 48 46 36 24 34"/><path d="M60 74 C60 48 74 36 96 34"/></g>
+  <rect x="11" y="28" width="26" height="12" rx="6" fill="${c.ink}"/><rect x="83" y="28" width="26" height="12" rx="6" fill="${c.ink}"/>`}},
+{no:7,name:'Living spotlight',word:true,
+ idea:'The name in a strong wordmark, with a yellow spotlight that moves between its letters.',
+ hid:'The logo is never quite the same twice: the light lands on the Y in the hero, on the W on a business card, and can travel in motion. The compact mark is the spotlight on a lowercase y.',
+ risk:'A moving identity needs rules for where the spot may sit, or it becomes inconsistent.',
+ d:(c,sm)=>{const k=uid();
+  return `<defs><clipPath id="${k}"><circle cx="60" cy="60" r="48"/></clipPath></defs><circle cx="60" cy="60" r="48" fill="${c.lit}"/>
+  <text x="60" y="${sm?92:88}" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="${sm?96:84}" fill="${c.mono?c.bg:c.on}" clip-path="url(#${k})">y</text>`},
+ wordSvg:(c,anim)=>{const k=uid(),txt=`x="4" y="44" font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="46" letter-spacing="-2" textLength="352" lengthAdjust="spacingAndGlyphs"`;
+  const a=anim&&!matchMedia('(prefers-reduced-motion: reduce)').matches?`<animate attributeName="cx" values="98;222;20;98" keyTimes="0;.4;.7;1" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines=".65 0 .35 1;.65 0 .35 1;.65 0 .35 1"/>`:'';
+  return `<svg viewBox="0 0 360 60" aria-hidden="true" class="big" style="width:min(520px,92%)"><defs><clipPath id="${k}"><circle cx="98" cy="28" r="27">${a}</circle></clipPath></defs>
+  <circle cx="98" cy="28" r="27" fill="${c.lit}">${a}</circle>
+  <text ${txt} fill="${c.ink}">The Yellow Works</text><text ${txt} fill="${c.on}" clip-path="url(#${k})">The Yellow Works</text></svg>`}}
+];
+
+const mark=(con,th,s,cls='',anim=false)=>`<svg viewBox="0 0 120 120" width="${s}" height="${s}" aria-hidden="true" class="${cls}${anim?' anim':''}" style="overflow:visible">${con.d(T[th],s<=28)}</svg>`;
+
+document.getElementById('gal').innerHTML=C.map(c=>`<a href="#c${c.no}">${mark(c,'dark',84)}<span>${c.no} · ${c.name}</span></a>`).join('');
+
+document.getElementById('out').innerHTML=C.map(c=>`
+<section class="cn" id="c${c.no}">
+ <div class="stage"><span class="no">Concept ${c.no}</span>${c.word?c.wordSvg(T.stage,true):mark(c,'stage',300,'big',!!c.anim)}</div>
+ <div class="side">
+  <div class="info"><h2>${c.name}</h2><p>${c.idea}</p><p class="hid">${c.hid}</p><p class="risk">${c.risk}</p></div>
+  <div class="tiles">
+   <div class="tl p">${mark(c,'light',120)}<small>On Paper</small></div>
+   <div class="tl y">${mark(c,'mono',120)}<small>One colour</small></div>
+   <div class="tl s"><div class="row">${mark(c,'dark',32)}${mark(c,'dark',16)}</div><div class="av">${mark(c,'dark',40)}</div><small>32, 16 px, avatar</small></div>
+  </div>
+  <div class="lock">${c.word?c.wordSvg(T.light,false).replace('class="big" style="width:min(520px,92%)"','style="width:min(340px,100%)"'):`${mark(c,'light',52)}<span class="wm">The Yellow Works</span>`}</div>
+ </div>
+</section>`).join('');
+</script>
+</body></html>

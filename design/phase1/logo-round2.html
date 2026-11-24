@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Logo round 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#FFD52A;--marigold:#FF9F1C;--dusk:#16142B;--twilight:#2A2160;--paper:#FFFCF2;--butter:#FFF1B8;
+--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--dusk);font:16px/1.55 var(--body)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.intro{background:var(--dusk);color:var(--paper);padding:48px 0 40px}
+.intro h1{font:800 clamp(34px,6vw,72px)/1 var(--display);letter-spacing:-.04em;margin:0 0 14px}
+.intro p{max-width:66ch;margin:0 0 10px;color:#FFFCF2cc}
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:28px}
+.sheet a{background:#211e3d;border-radius:14px;padding:14px 8px 10px;display:grid;justify-items:center;gap:8px;color:var(--paper);text-decoration:none;font-size:13px;text-align:center}
+.sheet a:hover,.sheet a:focus-visible{background:var(--twilight);outline:2px solid var(--sun);outline-offset:2px}
+.picks{margin-top:22px;font-size:15px}.picks b{color:var(--sun)}
+section.con{padding:56px 0;border-bottom:1px solid #16142b1a}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:22px}
+.head h2{font:800 clamp(28px,4vw,46px)/1 var(--display);letter-spacing:-.035em;margin:0}
+.head .rt{font:600 14px var(--body);color:#16142b99;display:block;margin-bottom:6px}
+.head p{margin:0 0 8px;max-width:60ch}
+.head .tr{font-size:14px}
+.tiles{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.t{border-radius:18px;display:grid;place-items:center;min-height:260px;position:relative}
+.t small{position:absolute;left:14px;bottom:10px;font-size:12px;opacity:.7}
+.t.dark{background:var(--dusk);color:var(--paper)}.t.light{background:var(--paper);border:1px solid #16142b1f}.t.sun{background:var(--sun)}
+.apps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+.app{border:1px solid #16142b1f;border-radius:18px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:12px;min-height:170px}
+.app>b{font-size:12px;font-weight:600;color:#16142b99}
+.sizes{display:flex;align-items:flex-end;gap:14px}
+.tab{display:flex;align-items:center;gap:6px;background:#e9e7ef;border-radius:8px 8px 0 0;padding:6px 10px;font-size:12px;width:max-content;max-width:100%}
+.avs{display:flex;gap:14px;align-items:center}
+.av{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;overflow:hidden;flex:none}
+.lock{display:flex;align-items:center;gap:10px;font:800 22px/1 var(--display);letter-spacing:-.035em}
+.board{background:#0c0b17;border-radius:14px;padding:18px;display:grid;place-items:center;flex:1}
+.board .plate{display:flex;align-items:center;gap:12px;background:var(--dusk);border:2px solid var(--sun);border-radius:10px;padding:10px 16px;box-shadow:0 0 26px 4px #FFD52A55;color:var(--paper);font:800 20px/1 var(--display);letter-spacing:-.035em}
+.wm{font:800 1em/1 var(--display);letter-spacing:-.045em;white-space:nowrap}
+.wm svg{display:inline-block;width:.56em;height:.56em;vertical-align:baseline;margin:0 .01em}
+.foot{padding:48px 0 64px}
+.foot h2{font:800 34px/1.05 var(--display);letter-spacing:-.03em;margin:0 0 10px}
+@media (max-width:900px){.head{grid-template-columns:1fr}.tiles{grid-template-columns:1fr 1fr}.tiles .t:first-child{grid-column:1/-1}.apps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.apps{grid-template-columns:1fr}.t{min-height:200px}}
+</style></head><body>
+
+<div class="intro"><div class="wrap">
+<h1>Logo round 2: nine new ideas</h1>
+<p>The first five routes were thin strokes pieced together from the letters Y and W. This round starts from objects you would see on a lit shop street at night: a window, a shutter, a neon sign, an open door. Each one is a bold filled shape, so it holds up small and on a signboard.</p>
+<p>Each route below is shown on Dusk, on Paper and in one colour on yellow, then at favicon size, as a WhatsApp avatar, as a lockup and on a lit signboard. These are concept drawings, not final vectors.</p>
+<div class="sheet" id="sheet"></div>
+<p class="picks">My top three: <b>Route 7, shutter up</b> (most Indian, most ownable) · <b>Route 13, the lit one</b> (tells the big idea directly) · <b>Route 8, neon yw</b> (best animation).</p>
+</div></div>
+
+<main class="wrap" id="out"></main>
+
+<div class="wrap foot">
+<h2>Pick two or three to take further</h2>
+<p>Tell me which ones you like, and what put you off the first five (too thin, too letter-based, too abstract, wrong mood?). That steers the refinement more than anything else. No conflict checks have been run on these yet.</p>
+</div>
+
+<noscript><p class="wrap">This review sheet draws the marks with JavaScript.</p></noscript>
+<script>
+const T={
+ dark:{bg:'#16142B',ink:'#FFFCF2',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',dim:'rgba(255,252,242,.2)',door:'#2A2160',glow:true},
+ light:{bg:'#FFFCF2',ink:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',dim:'#16142B',door:'#16142B'},
+ mono:{bg:'#FFD52A',ink:'#16142B',lit:'#16142B',lit2:'#16142B',soft:'#16142B',dim:'#16142B',door:'#16142B',mono:true}
+};
+let n=0;const uid=()=>'u'+(n++);
+const blur=(id,s=6)=>`<filter id="${id}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="${s}"/></filter>`;
+
+const YP='M16 36 C16 62 22 74 32 74 C42 74 46 62 46 36 V86 C46 102 38 108 25 105';
+const WP='M60 36 C60 64 64 74 72 74 C80 74 83 64 83 50 C83 64 86 74 94 74 C102 74 106 64 106 36';
+const ARCH='M34 108 V48 A26 26 0 0 1 86 48 V108 Z';
+const LONG='86,12 114,16 44,110 16,106', SHORT='6,16 34,12 76,62 48,66';
+
+const C=[
+{no:6,name:'Lit window',
+ story:'A shop window at night whose frame is a Y. Three lit panes, with the top one brightest, like a beam of light.',
+ good:'One bold shape. Superb as an app icon, favicon and avatar.',risk:'If the arms widen it drifts toward peace-sign or car-badge shapes, so the arms stay steep.',
+ d:c=>{const m=uid(),g=uid();return `<defs><mask id="${m}"><rect x="19" y="19" width="82" height="82" rx="14" fill="#fff"/><path d="M60 64 L40 10 M60 64 L80 10 M60 64 V110" stroke="#000" stroke-width="8" fill="none" stroke-linecap="square"/></mask>${c.glow?blur(g,8):''}</defs>
+ ${c.glow?`<rect x="20" y="20" width="80" height="80" rx="14" fill="${c.lit}" opacity=".4" filter="url(#${g})"/>`:''}
+ <rect x="8" y="8" width="104" height="104" rx="24" fill="none" stroke="${c.ink}" stroke-width="8"/>
+ <g mask="url(#${m})"><rect x="19" y="19" width="82" height="82" fill="${c.lit}"/>${c.mono?'':`<polygon points="60,64 40,10 80,10" fill="${c.soft}"/>`}</g>`}},
+{no:7,name:'Shutter up',
+ story:'The rolling shutter every Indian shop pulls up in the morning. Half up, light underneath: open for business.',
+ good:'Instantly local and unlike any agency mark we looked at. The shutter rolling up is a natural hero animation.',risk:'The slats need care at small sizes. At 16 px it becomes a dark block over a yellow one, which still reads.',
+ d:c=>{const m=uid(),g=uid();return `<defs><mask id="${m}"><rect width="120" height="120" fill="#fff"/><path d="M18 29 H102 M18 39 H102 M18 49 H102" stroke="#000" stroke-width="3.5"/></mask>${c.glow?blur(g,7):''}</defs>
+ ${c.glow?`<rect x="22" y="62" width="76" height="40" fill="${c.lit}" opacity=".55" filter="url(#${g})"/>`:''}
+ ${c.mono?'':`<rect x="18" y="58" width="84" height="44" fill="${c.lit}"/>`}
+ <rect x="18" y="18" width="84" height="40" fill="${c.ink}" mask="url(#${m})"/>
+ <rect x="50" y="55" width="20" height="7" rx="3.5" fill="${c.ink}"/>
+ <rect x="14" y="14" width="92" height="92" rx="14" fill="none" stroke="${c.ink}" stroke-width="8"/>`}},
+{no:8,name:'Neon yw',
+ story:'A lowercase yw bent from one neon tube, like the sign over a chemist or a tea stall after dark.',
+ good:'Lights on, literally. The tube flickering on is the hero load sequence.',risk:'It needs a dark ground to glow, so on light pages it sits on its own board.',
+ d:c=>{const g=uid();const p=s=>`<path d="${YP}" ${s}/><path d="${WP}" ${s}/>`;
+  if(c.mono)return `<g fill="none" stroke-linecap="round" stroke-linejoin="round">${p(`stroke="${c.ink}" stroke-width="9"`)}</g>`;
+  return `<defs>${blur(g,5)}</defs>${c.glow?'':'<rect x="2" y="18" width="116" height="100" rx="20" fill="#16142B"/>'}
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round"><g filter="url(#${g})" opacity=".75">${p(`stroke="${c.lit2}" stroke-width="13"`)}</g>
+  ${p(`stroke="${c.lit}" stroke-width="7"`)}${p('stroke="#FFFDF0" stroke-width="2.2" opacity=".9"')}</g>`}},
+{no:9,name:'Door ajar',
+ story:'A doorway left open, light spilling onto the street. It says: come in.',
+ good:'Warm and welcoming. The light spill can become a recurring shape across the site.',risk:'It has no letters, so the name has to do the recognition work.',
+ d:c=>{const k=uid(),g=uid();return `<defs><clipPath id="${k}"><path d="${ARCH}"/></clipPath>${c.glow?blur(g,6):''}</defs>
+ ${c.glow?`<polygon points="70,108 86,108 116,120 50,120" fill="${c.lit}" opacity=".6" filter="url(#${g})"/>`:''}
+ ${c.mono?'':`<path d="${ARCH}" fill="${c.lit}"/><polygon points="72,108 86,108 114,119 56,119" fill="${c.lit}" opacity=".6"/>`}
+ <g clip-path="url(#${k})"><polygon points="34,0 72,10 72,104 34,108" fill="${c.door}"/></g>
+ <circle cx="65" cy="64" r="3.5" fill="${c.mono?c.bg:c.lit}"/>
+ <path d="${ARCH}" fill="none" stroke="${c.ink}" stroke-width="7" stroke-linejoin="round"/>`}},
+{no:10,name:'Viewfinder',
+ story:'Focus brackets around a lit dot. We put your business in frame.',
+ good:'The brackets become a site-wide device for framing client work and screenshots.',risk:'Close to generic camera and scan icons. The least ownable of the nine.',
+ d:c=>{const g=uid();return `<defs>${c.glow?blur(g,7):''}</defs>
+ <path d="M14 42 V14 H42 M78 14 H106 V42 M106 78 V106 H78 M42 106 H14 V78" fill="none" stroke="${c.ink}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+ ${c.glow?`<circle cx="60" cy="60" r="26" fill="${c.lit}" opacity=".6" filter="url(#${g})"/>`:''}
+ <circle cx="60" cy="60" r="22" fill="${c.lit}"/>`}},
+{no:11,name:'Switched on',
+ story:'A switch flipped to on. The simplest possible version of the big idea.',
+ good:'Playful, and the hero animation writes itself: off, click, on.',risk:'Toggles are everywhere in app interfaces, so it can read as a settings icon.',
+ d:c=>{const g=uid();return `<defs>${c.glow?blur(g,8):''}</defs>
+ ${c.glow?`<rect x="10" y="36" width="100" height="48" rx="24" fill="${c.lit}" opacity=".45" filter="url(#${g})"/>`:''}
+ <rect x="6" y="32" width="108" height="56" rx="28" fill="${c.mono?c.ink:c.lit}"/>
+ <line x1="34" y1="49" x2="34" y2="71" stroke="${c.mono?c.bg:c.ink}" stroke-width="6" stroke-linecap="round"/>
+ <circle cx="86" cy="60" r="20" fill="${c.mono?c.bg:c.ink}"/>`}},
+{no:12,name:'Lit letters',word:true,
+ story:'the yellow works, set lowercase, with both o’s lit like windows on a street at night.',
+ good:'No separate symbol to learn. Distinctive wherever the name is written. The lit o becomes the avatar.',risk:'On its own, the lit o is a plain ring, so it needs the wordmark nearby to be recognised.',
+ d:c=>{const g=uid();return `<defs>${c.glow?blur(g,7):''}</defs>${c.glow?`<circle cx="60" cy="60" r="34" fill="${c.lit}" opacity=".5" filter="url(#${g})"/>`:''}<circle cx="60" cy="60" r="34" fill="${c.mono?'none':c.lit}" stroke="${c.glow?c.lit2:c.ink}" stroke-width="18"/>`}},
+{no:13,name:'The lit one',
+ story:'Three shops on a street. One has its lights on. Be the one they choose.',
+ good:'The most direct telling of the big idea and of the hero headline.',risk:'Gable roofs can read as real-estate branding. Refinement would add shopfront detail such as awnings or shutters.',
+ d:c=>{const g=uid();const L='M8 108 V68 L24 54 L40 68 V108 Z',M='M44 108 V50 L60 32 L76 50 V108 Z',R='M80 108 V68 L96 54 L112 68 V108 Z';
+  const side=c.mono?`fill="none" stroke="${c.ink}" stroke-width="5" stroke-linejoin="round"`:`fill="${c.dim}"`;
+  return `<defs>${c.glow?blur(g,8):''}</defs>${c.glow?`<path d="${M}" fill="${c.lit}" opacity=".7" filter="url(#${g})"/>`:''}
+  <path d="${L}" ${side}/><path d="${R}" ${side}/><path d="${M}" fill="${c.mono?c.ink:c.lit}"/>
+  <rect x="52" y="58" width="16" height="14" rx="2" fill="${c.mono?c.bg:c.soft}"/>
+  <rect x="54" y="84" width="12" height="24" rx="2" fill="${c.mono?c.bg:(c.glow?c.lit2:c.ink)}"/>`}},
+{no:14,name:'Marker y',
+ story:'A lowercase y made from two highlighter swipes. Where they cross, the ink deepens to marigold.',
+ good:'Ties the logo to the highlighter swipe used across the site, so they read as one system.',risk:'Light on white backgrounds, and the overlap detail disappears at 16 px.',
+ d:c=>{const k=uid();return `<defs><clipPath id="${k}"><polygon points="${LONG}"/></clipPath></defs>
+ <polygon points="${SHORT}" fill="${c.lit}"/><polygon points="${LONG}" fill="${c.lit}"/>
+ ${c.mono?'':`<polygon points="${SHORT}" fill="${c.lit2}" clip-path="url(#${k})"/><path d="M99 18 L33 104 M92 20 L26 102" stroke="${c.soft}" stroke-width="1.6" opacity=".6"/>`}`}}
+];
+
+const mark=(con,th,s)=>`<svg viewBox="0 0 120 120" width="${s}" height="${s}" aria-hidden="true" style="display:block;overflow:visible">${con.d(T[th])}</svg>`;
+const o=(c)=>`<svg viewBox="0 0 100 100" aria-hidden="true"${c.glow?' style="filter:drop-shadow(0 0 6px #FFD52A)"':''}><circle cx="50" cy="50" r="37" fill="${c.mono?'none':c.lit}" stroke="${c.glow?c.lit2:c.ink}" stroke-width="17"/></svg>`;
+const word=(th,px)=>{const c=T[th];return `<span class="wm" style="color:${c.ink};font-size:${px}px">the yell${o(c)}w w${o(c)}rks</span>`};
+const hero=(con,th,s,px)=>con.word?word(th,px):mark(con,th,s);
+
+document.getElementById('sheet').innerHTML=C.map(c=>`<a href="#r${c.no}">${mark(c,'dark',64)}<span>${c.no} · ${c.name}</span></a>`).join('');
+
+document.getElementById('out').innerHTML=C.map(c=>`
+<section class="con" id="r${c.no}">
+ <div class="head"><div><span class="rt">Route ${c.no}</span><h2>${c.name}</h2></div>
+  <div><p>${c.story}</p><p class="tr"><b>Works because:</b> ${c.good}<br><b>Watch out:</b> ${c.risk}</p></div></div>
+ <div class="tiles">
+  <div class="t dark">${hero(c,'dark',170,58)}<small>On Dusk</small></div>
+  <div class="t light">${hero(c,'light',120,30)}<small>On Paper</small></div>
+  <div class="t sun">${hero(c,'mono',120,30)}<small>One colour</small></div>
+ </div>
+ <div class="apps">
+  <div class="app"><b>Small sizes and browser tab</b>
+   <div class="sizes">${[64,32,24,16].map(s=>mark(c,'light',s)).join('')}</div>
+   <div class="tab">${mark(c,'light',16)}The Yellow Works</div></div>
+  <div class="app"><b>WhatsApp avatar (circle crop)</b>
+   <div class="avs"><div class="av" style="background:#16142B">${mark(c,'dark',46)}</div><div class="av" style="background:#FFD52A">${mark(c,'mono',46)}</div></div></div>
+  <div class="app"><b>Lockup</b>
+   ${c.word?word('light',26):`<div class="lock">${mark(c,'light',40)}<span>The Yellow Works</span></div>`}</div>
+  <div class="app" style="padding:0;overflow:hidden"><div class="board"><div class="plate">${c.word?word('dark',22):`${mark(c,'dark',34)}<span>The Yellow Works</span>`}</div></div></div>
+ </div>
+</section>`).join('');
+</script>
+</body></html>

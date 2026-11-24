@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Homepage at 360 px</title>
+<style>html,body{margin:0;background:#d8d4cc}iframe{display:block;width:360px;border:0;margin:0;background:#fff}</style></head>
+<body><iframe id="f" title="Homepage at 360 px wide" height="900"></iframe>
+<script>
+const f=document.getElementById('f');const q=location.search;f.src='homepage.html'+q;
+f.addEventListener('load',()=>setTimeout(()=>{const h=f.contentDocument.documentElement.scrollHeight;f.style.height=h+'px';document.documentElement.dataset.h=h},700));
+</script></body></html>

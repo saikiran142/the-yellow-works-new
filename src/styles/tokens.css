@@ -1,0 +1,179 @@
+/*
+ * The Yellow Works design tokens (Phase 1, direction A "Lights on").
+ * Raw values live in :root as --yw-*. The @theme block exposes them to Tailwind v4 as utilities.
+ * Components use the Tailwind names or var(--yw-*). No hard-coded colours or durations in components.
+ * Contrast verified with design/phase1/contrast.mjs. See docs/BRAND_GUIDELINES.md for the allowed pairings.
+ */
+
+:root {
+  /* ---- colour: core ---- */
+  --yw-sun: #FFD52A;        /* Highlighter Yellow: primary buttons, swipes, the lit cube */
+  --yw-marigold: #FF9F1C;   /* warm depth: pressed states, hot centre of glows */
+  --yw-dusk: #16142B;       /* Dusk Ink: hero stage, dark sections, primary text */
+  --yw-twilight: #2A2160;   /* second dark: hero sky, dark cards */
+  --yw-paper: #FFFCF2;      /* main light background */
+  --yw-butter: #FFF1B8;     /* soft tint: alternate sections, form fields, chips */
+
+  /* ---- colour: industry accents (section tint, showcase tab, 3D object, form chip) ---- */
+  --yw-clinic: #2FD4A7;     /* Dusk text 9.49:1 */
+  --yw-gym: #FF5A36;        /* Dusk text 5.79:1; white text only large (3.10:1) */
+  --yw-realty: #4456FF;     /* white text 5.22:1; Dusk text only large (3.44:1) */
+
+  /* ---- colour: roles (dark and light page) ---- */
+  --yw-text: var(--yw-dusk);
+  --yw-text-muted: rgb(22 20 43 / 0.72);
+  --yw-text-on-dark: var(--yw-paper);
+  --yw-text-on-dark-muted: rgb(255 252 242 / 0.8);
+  --yw-bg: var(--yw-paper);
+  --yw-bg-alt: var(--yw-butter);
+  --yw-bg-dark: var(--yw-dusk);
+  --yw-focus: var(--yw-twilight);   /* focus ring on light; use --yw-sun on dark */
+
+  /* ---- gradients: light only, never decoration ---- */
+  --yw-grad-spotlight: radial-gradient(closest-side, var(--yw-butter), var(--yw-sun) 45%, var(--yw-marigold) 70%, transparent);
+  --yw-grad-dusk-sky: linear-gradient(180deg, var(--yw-twilight), var(--yw-dusk));
+
+  /* ---- typography ---- */
+  --yw-font-display: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+  --yw-font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --yw-display-opsz: 96;            /* match the logo wordmark at display sizes */
+  --yw-track-display: -0.03em;      /* display type: -2% to -4% */
+  --yw-track-body: 0;
+  --yw-weight-display: 800;
+  --yw-weight-heading: 700;
+  --yw-weight-body: 400;
+  --yw-weight-ui: 600;              /* buttons, labels */
+
+  /* modular scale, ratio 1.25, fluid between 360 px and 1440 px viewports */
+  --yw-text-xs: clamp(0.8125rem, 0.8rem + 0.05vw, 0.875rem);   /* 13 px floor: legal, captions */
+  --yw-text-sm: clamp(0.9375rem, 0.92rem + 0.08vw, 1rem);
+  --yw-text-body: clamp(1.0625rem, 1.03rem + 0.12vw, 1.1875rem);
+  --yw-text-lead: clamp(1.1875rem, 1.1rem + 0.4vw, 1.5rem);
+  --yw-text-h4: clamp(1.25rem, 1.15rem + 0.45vw, 1.625rem);
+  --yw-text-h3: clamp(1.625rem, 1.4rem + 1vw, 2.375rem);
+  --yw-text-h2: clamp(2.25rem, 1.7rem + 2.4vw, 4rem);
+  --yw-text-h1: clamp(2.875rem, 2rem + 4vw, 6rem);
+  --yw-text-display: clamp(3rem, 0.9rem + 8vw, 8.5rem);        /* hero headline, up to about 10vw on large screens */
+  --yw-lh-tight: 0.98;              /* display */
+  --yw-lh-heading: 1.08;
+  --yw-lh-body: 1.55;
+  --yw-measure: 68ch;               /* body line length stays under 75 characters */
+
+  /* ---- spacing: 4 px base ---- */
+  --yw-space-1: 0.25rem;
+  --yw-space-2: 0.5rem;
+  --yw-space-3: 0.75rem;
+  --yw-space-4: 1rem;
+  --yw-space-5: 1.5rem;
+  --yw-space-6: 2rem;
+  --yw-space-7: 3rem;
+  --yw-space-8: 4rem;
+  --yw-space-9: 6rem;
+  --yw-space-10: 8rem;
+  --yw-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+
+  /* ---- layout ---- */
+  --yw-container: 80rem;            /* 1280 px content width */
+  --yw-gutter: clamp(1rem, 0.5rem + 2.2vw, 2rem);  /* 16 px at 360 px */
+  --yw-grid-cols: 12;
+  --yw-header-h: 4.5rem;            /* sticky header height: use for scroll-padding so focus is never hidden */
+  --yw-target-min: 2.75rem;         /* 44 px comfortable target; never below 24 px (WCAG 2.2 AA) */
+
+  /* ---- shape ---- */
+  --yw-radius-sm: 0.5rem;
+  --yw-radius-md: 0.875rem;
+  --yw-radius-lg: 1.25rem;
+  --yw-radius-xl: 1.75rem;
+  --yw-radius-pill: 999px;
+
+  /* ---- elevation (tactile press, soft light shadows; no identical grey card shadow everywhere) ---- */
+  --yw-shadow-press: 0 4px 0 var(--yw-marigold);          /* yellow button */
+  --yw-shadow-press-dark: 0 4px 0 #000;                   /* dark button */
+  --yw-shadow-press-active: 0 1px 0 var(--yw-marigold);
+  --yw-shadow-panel: 0 14px 34px rgb(22 20 43 / 0.28);    /* floating panels on Dusk */
+  --yw-shadow-lift: 0 18px 40px rgb(22 20 43 / 0.14);     /* phone mockups on Paper */
+  --yw-glow: 0 0 40px 6px rgb(255 213 42 / 0.35);         /* lit objects only */
+
+  /* ---- motion ---- */
+  --yw-dur-fast: 150ms;             /* press, toggle, colour change */
+  --yw-dur-base: 250ms;             /* hover, tab switch, accordion */
+  --yw-dur-slow: 450ms;             /* panel and section transitions */
+  --yw-dur-hero: 1800ms;            /* maximum total for the hero load sequence */
+  --yw-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --yw-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* spring for Motion for React: stiffness about 300, damping about 30 (set in JS, not CSS) */
+
+  /* ---- z-index ---- */
+  --yw-z-header: 40;
+  --yw-z-menu: 50;
+  --yw-z-whatsapp: 45;
+}
+
+/* Reduced motion: movement becomes instant or a short fade. Durations collapse; components must not rely on motion for meaning. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --yw-dur-fast: 1ms;
+    --yw-dur-base: 1ms;
+    --yw-dur-slow: 1ms;
+    --yw-dur-hero: 1ms;
+  }
+}
+
+/* ---- Tailwind v4 theme: exposes tokens as utilities (bg-sun, text-dusk, font-display, rounded-lg, ...) ---- */
+@theme inline {
+  --color-*: initial;                       /* remove default palette so only brand colours exist */
+  --color-sun: var(--yw-sun);
+  --color-marigold: var(--yw-marigold);
+  --color-dusk: var(--yw-dusk);
+  --color-twilight: var(--yw-twilight);
+  --color-paper: var(--yw-paper);
+  --color-butter: var(--yw-butter);
+  --color-clinic: var(--yw-clinic);
+  --color-gym: var(--yw-gym);
+  --color-realty: var(--yw-realty);
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-display: var(--yw-font-display);
+  --font-body: var(--yw-font-body);
+
+  --text-xs: var(--yw-text-xs);
+  --text-sm: var(--yw-text-sm);
+  --text-base: var(--yw-text-body);
+  --text-lead: var(--yw-text-lead);
+  --text-h4: var(--yw-text-h4);
+  --text-h3: var(--yw-text-h3);
+  --text-h2: var(--yw-text-h2);
+  --text-h1: var(--yw-text-h1);
+  --text-display: var(--yw-text-display);
+
+  --radius-sm: var(--yw-radius-sm);
+  --radius-md: var(--yw-radius-md);
+  --radius-lg: var(--yw-radius-lg);
+  --radius-xl: var(--yw-radius-xl);
+  --radius-pill: var(--yw-radius-pill);
+
+  --shadow-press: var(--yw-shadow-press);
+  --shadow-panel: var(--yw-shadow-panel);
+  --shadow-lift: var(--yw-shadow-lift);
+  --shadow-glow: var(--yw-glow);
+
+  --ease-out: var(--yw-ease-out);
+  --ease-in-out: var(--yw-ease-in-out);
+
+  /* breakpoints: design at 360 and 1440; these are the switch points */
+  --breakpoint-sm: 40rem;    /* 640 */
+  --breakpoint-md: 48rem;    /* 768 */
+  --breakpoint-lg: 64rem;    /* 1024 */
+  --breakpoint-xl: 80rem;    /* 1280 */
+  --breakpoint-2xl: 96rem;   /* 1536 */
+}
+
+/* ---- base ---- */
+html { scroll-padding-top: calc(var(--yw-header-h) + var(--yw-space-4)); }  /* sticky header never hides focus targets */
+body { background: var(--yw-bg); color: var(--yw-text); font-family: var(--yw-font-body); font-size: var(--yw-text-body); line-height: var(--yw-lh-body); letter-spacing: var(--yw-track-body); }
+h1, h2, h3, h4, .yw-display { font-family: var(--yw-font-display); font-weight: var(--yw-weight-display); letter-spacing: var(--yw-track-display); line-height: var(--yw-lh-heading); font-variation-settings: "opsz" var(--yw-display-opsz); text-wrap: balance; }
+:focus-visible { outline: 3px solid var(--yw-focus); outline-offset: 3px; }
+.dark-surface :focus-visible, [data-surface="dark"] :focus-visible { outline-color: var(--yw-sun); }

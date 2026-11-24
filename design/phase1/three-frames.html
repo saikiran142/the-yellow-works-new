@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D style frames</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:transparent}
+body.hero{background:radial-gradient(28% 40% at 49% 47%,rgba(255,213,42,.28) 0%,rgba(255,159,28,.10) 55%,transparent 100%),radial-gradient(60% 70% at 55% 50%,#3a2f86 0%,#2A2160 38%,#16142B 85%)}
+canvas{display:block;width:100vw;height:100vh}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+// Soft-touch premium toy style: chunky rounded shapes, glossy enamel hero objects, matte clay, warm key light
+// from upper left, yellow and marigold bounce, soft contact shadow, three-quarter camera. Palette colours only.
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const scene_name = new URLSearchParams(location.search).get('scene') || 'hero';
+document.body.classList.toggle('hero', scene_name === 'hero');
+
+const C = { sun: 0xFFD52A, marigold: 0xFF9F1C, dusk: 0x16142B, twilight: 0x2A2160, paper: 0xFFFCF2, butter: 0xFFF1B8, mint: 0x2FD4A7, coral: 0xFF5A36, cobalt: 0x4456FF };
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.NoToneMapping;   // keep palette colours true
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(28, innerWidth / innerHeight, 0.1, 100);
+
+/* shared materials */
+const clay = (c, r = 0.72) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: 0, envMapIntensity: 0.55 });
+const enamel = (c, env = 0.55) => new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.34, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.2, envMapIntensity: env });
+const glow = (c, i = 0.45) => new THREE.MeshStandardMaterial({ color: c, emissive: C.marigold, emissiveIntensity: i, roughness: 0.4, envMapIntensity: 0.3 });
+const rbox = (w, h, d, r = 0.12, seg = 5) => new RoundedBoxGeometry(w, h, d, seg, r);
+const mesh = (g, m, cast = true) => { const o = new THREE.Mesh(g, m); o.castShadow = cast; o.receiveShadow = true; return o; };
+
+function lights(key = [-6, 9, 5], bounce = true) {
+  scene.add(new THREE.HemisphereLight(0xFFF1B8, 0x2A2160, 0.35));
+  const d = new THREE.DirectionalLight(0xFFE2B0, 1.5);   // warm key, upper left
+  d.position.set(...key); d.castShadow = true;
+  d.shadow.mapSize.set(2048, 2048); d.shadow.radius = 9; d.shadow.bias = -0.0004;
+  Object.assign(d.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 1, far: 30 });
+  scene.add(d);
+  if (bounce) { const r = new THREE.DirectionalLight(C.marigold, 0.9); r.position.set(6, 2, 7); scene.add(r); } // yellow-marigold rim
+}
+function ground(y, opacity = 0.35) {
+  const g = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity }));
+  g.rotation.x = -Math.PI / 2; g.position.y = y; g.receiveShadow = true; scene.add(g);
+}
+
+/* ------------------------------------------------------------ hero: the cube, lit */
+function hero() {
+  lights([-5, 9, 6], true);
+  ground(-1.9, 0.5);
+  // camera on the cube's body diagonal, like the logo: the three edges at the near corner read as the Y
+  camera.fov = 17; camera.updateProjectionMatrix();
+  camera.position.set(11, 10.6, 11); camera.lookAt(0, 0.05, 0);
+  const grp = new THREE.Group();
+  grp.add(mesh(rbox(2, 2, 2, 0.16, 8), new THREE.MeshStandardMaterial({ color: 0x3a2f9a, roughness: 0.55, envMapIntensity: 0.8 })));
+  const ey = glow(C.sun, 0.45);
+  [[[0, 1, 1], [2.1, 0.46, 0.46]], [[1, 0, 1], [0.46, 2.1, 0.46]], [[1, 1, 0], [0.46, 0.46, 2.1]]].forEach(([p, sz]) => {
+    const b = mesh(rbox(...sz, 0.14, 5), ey, false); b.position.set(...p); grp.add(b);
+  });
+  const knob = mesh(new THREE.SphereGeometry(0.34, 32, 24), glow(C.butter, 0.6), false); knob.position.set(1, 1, 1); grp.add(knob);
+  const heat = new THREE.PointLight(C.marigold, 14, 7, 2); heat.position.set(1.9, 1.9, 1.9); scene.add(heat);
+  scene.add(grp);
+  // panels placed in screen space (a: right, b: up, d: toward camera) and turned to face it
+  const right = new THREE.Vector3(1, 0, -1).normalize(), upv = new THREE.Vector3(-1, 2, -1).normalize(), toCam = new THREE.Vector3(1, 1, 1).normalize();
+  const place = (o, a, b, d, roll) => { o.position.copy(right.clone().multiplyScalar(a)).addScaledVector(upv, b).addScaledVector(toCam, d); o.lookAt(camera.position); o.rotateZ(roll); o.rotateY(0.28 * Math.sign(-a)); return o; };
+  const slab = (c, w, h, tag) => {
+    const g = new THREE.Group();
+    g.add(mesh(rbox(w, h, 0.16, 0.14, 6), c === C.cobalt ? clay(c, 0.45) : enamel(c, 0.4), false));
+    const bar = mesh(rbox(w * 0.62, 0.14, 0.05, 0.06, 4), clay(C.paper, 0.6), false); bar.position.set(-w * 0.12, h * 0.2, 0.1); g.add(bar);
+    const d1 = mesh(rbox(w * 0.3, 0.2, 0.05, 0.08, 4), clay(tag, 0.5), false); d1.position.set(-w * 0.28, -h * 0.12, 0.1); g.add(d1);
+    const d2 = mesh(rbox(w * 0.3, 0.2, 0.05, 0.08, 4), clay(C.paper, 0.5), false); d2.position.set(w * 0.12, -h * 0.12, 0.1); g.add(d2);
+    return g;
+  };
+  scene.add(place(slab(C.mint, 1.9, 1.2, C.dusk), -2.75, 1.8, 1.2, 0.08));
+  scene.add(place(slab(C.coral, 1.7, 1.1, C.dusk), -2.3, -1.7, 2.2, -0.06));
+  scene.add(place(slab(C.cobalt, 1.9, 1.2, C.paper), 2.8, 1.3, -0.4, -0.07));
+}
+
+/* ------------------------------------------------------------ icon: kettlebell (gym, coral) */
+function kettlebell() {
+  lights([-5, 8, 6], true); ground(-0.95, 0.28);
+  const g = new THREE.Group();
+  const bell = mesh(new THREE.SphereGeometry(1, 72, 54), enamel(C.coral)); bell.scale.set(1, 0.9, 1); g.add(bell);
+  const foot = mesh(new THREE.CylinderGeometry(0.72, 0.8, 0.22, 56), enamel(C.coral)); foot.position.y = -0.84; g.add(foot);
+  const handle = mesh(new THREE.TorusGeometry(0.62, 0.17, 28, 72, Math.PI), enamel(C.coral)); handle.position.set(0, 0.62, 0); g.add(handle);
+  const legL = mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.4, 28), enamel(C.coral)); legL.position.set(-0.62, 0.42, 0); g.add(legL);
+  const legR = legL.clone(); legR.position.x = 0.62; g.add(legR);
+  const band = mesh(new THREE.TorusGeometry(0.97, 0.07, 20, 80), enamel(C.sun)); band.rotation.x = Math.PI / 2; band.position.y = -0.05; band.scale.set(1, 1, 1); g.add(band);
+  g.rotation.y = -0.55; g.position.y = 0.05; scene.add(g);
+  camera.position.set(4.2, 3.4, 6.8); camera.lookAt(0, 0.45, 0);
+}
+
+/* ------------------------------------------------------------ icon: appointment card (clinic, mint) */
+function card() {
+  lights([-5, 8, 6], true); ground(-1.45, 0.28);
+  const g = new THREE.Group();
+  g.add(mesh(rbox(2.3, 2.7, 0.34, 0.2, 8), enamel(C.mint)));
+  const face = mesh(rbox(1.9, 1.95, 0.08, 0.12, 6), clay(C.paper, 0.6)); face.position.set(0, -0.25, 0.2); g.add(face);
+  [-0.6, 0.6].forEach((x) => { const t = mesh(new THREE.TorusGeometry(0.17, 0.065, 16, 40), clay(C.dusk, 0.4)); t.position.set(x, 1.34, 0.12); g.add(t); });
+  const cell = (x, y, c, s = 0.38) => { const m = mesh(rbox(s, s, 0.1, 0.1, 4), clay(c, 0.5)); m.position.set(x, y, 0.28); g.add(m); };
+  const xs = [-0.55, 0, 0.55];
+  xs.forEach((x) => cell(x, 0.35, C.butter)); xs.forEach((x, i) => cell(x, -0.2, i === 1 ? C.sun : C.butter, i === 1 ? 0.46 : 0.38)); xs.forEach((x) => cell(x, -0.75, C.butter));
+  const pip = mesh(new THREE.SphereGeometry(0.09, 20, 16), clay(C.dusk, 0.4)); pip.position.set(0, -0.2, 0.36); g.add(pip);
+  g.rotation.set(0.1, -0.36, 0.03); scene.add(g);
+  camera.position.set(3.4, 2.2, 8.2); camera.lookAt(0, 0.05, 0);
+}
+
+({ hero, kettlebell, card })[scene_name]();
+renderer.render(scene, camera);
+document.title = 'ready';
+</script></body></html>

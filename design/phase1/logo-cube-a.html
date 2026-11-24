@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seams of light: Y weights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#FFD52A;--dusk:#16142B;--paper:#FFFCF2;--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}svg{display:block;max-width:100%;height:auto}
+body{margin:0;background:var(--dusk);color:var(--paper);font:16px/1.55 var(--body)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.intro{padding:52px 0 28px}
+.intro h1{font:800 clamp(34px,6vw,72px)/.98 var(--display);letter-spacing:-.045em;margin:0 0 16px}
+.intro p{max-width:64ch;color:#FFFCF2c0;margin:0 0 10px}
+.strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:26px}
+.strip a{background:#100f22;border-radius:20px;padding:24px 10px 14px;display:grid;justify-items:center;gap:12px;color:var(--paper);text-decoration:none;font-size:14px;text-align:center}
+.strip a:hover,.strip a:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.strip svg{width:min(130px,80%)}
+.strip b{display:block;color:var(--paper);font:800 18px var(--display);letter-spacing:-.03em}
+.strip span{color:#FFFCF2a0;font-size:12px}
+.pick{margin-top:18px}.pick b{color:var(--sun)}
+.opt{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:10px;padding:10px 0}
+.opt h2{grid-column:1/-1;font:800 clamp(26px,3vw,38px)/1 var(--display);letter-spacing:-.04em;margin:34px 0 2px}
+.opt h2 small{font:500 15px var(--body);letter-spacing:0;color:#FFFCF2a0;margin-left:10px}
+.tl{border-radius:20px;min-height:220px;display:grid;place-items:center;position:relative;padding:18px 14px 30px}
+.tl small{position:absolute;left:12px;bottom:8px;font-size:11px;opacity:.7}
+.tl.st{background:#100f22}.tl.st svg{width:min(220px,78%)}
+.tl.p{background:var(--paper);color:var(--dusk)}.tl.y{background:var(--sun);color:var(--dusk)}
+.tl.p svg,.tl.y svg{width:56%}
+.tl.s{background:#1f1c3a;gap:12px;align-content:center}
+.tl.s .row{display:flex;gap:12px;align-items:flex-end;justify-content:center}.tl.s .row svg{width:auto}
+.av{width:52px;height:52px;border-radius:50%;background:var(--dusk);border:1px solid #ffffff22;display:grid;place-items:center;overflow:hidden;margin:0 auto}.av svg{width:66%}
+.lock{grid-column:1/-1;background:var(--paper);color:var(--dusk);border-radius:20px;display:flex;align-items:center;justify-content:center;gap:14px;padding:18px 16px}
+.lock svg{width:52px;flex:none}
+.wm{font:800 clamp(20px,2.6vw,30px)/1 var(--display);letter-spacing:-.045em;white-space:nowrap}
+.foot{padding:40px 0 64px;color:#FFFCF2c0}.foot h2{color:var(--paper);font:800 32px/1.05 var(--display);letter-spacing:-.03em;margin:0 0 10px}
+@keyframes seamOn{0%,30%{opacity:0}40%{opacity:.9}46%{opacity:.1}58%{opacity:1}64%{opacity:.4}76%,100%{opacity:1}}
+@keyframes pulse{50%{opacity:.4}}
+.anim .seam{animation:seamOn 1.6s linear .3s backwards}
+.anim .seam-glow{animation:seamOn 1.6s linear .3s backwards,pulse 2.6s ease-in-out 2s infinite}
+@media (prefers-reduced-motion:reduce){.anim *{animation:none!important}}
+@media (max-width:900px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.opt{grid-template-columns:1fr 1fr}.tl.st{grid-column:1/-1}}
+@media (max-width:480px){.strip{grid-template-columns:1fr 1fr}.tl{min-height:170px}}
+</style></head><body>
+
+<div class="wrap intro">
+<h1>Seams of light, with a broader Y</h1>
+<p>Same dark block, same Y of light. Only the shape of the Y changes: two heavier even weights, one that bursts wide from the centre, and one that opens out toward the edges like beams.</p>
+<div class="strip" id="strip"></div>
+<p class="pick">My pick: <b>A2, Broad</b>. The Y reads instantly, even as a favicon, and the block stays solid. <b>A3, Burst</b> is the most dramatic if you want more energy.</p>
+</div>
+
+<main class="wrap" id="out"></main>
+
+<div class="wrap foot">
+<h2>Pick a weight</h2>
+<p>Once you choose, I will rebuild it precisely on an isometric grid with optical corrections, run the conflict checks and produce the full logo set.</p>
+</div>
+
+<noscript><p class="wrap">This sheet draws the marks with JavaScript.</p></noscript>
+<script>
+const T={
+ stage:{bg:'#100f22',glow:true},dark:{bg:'#16142B',glow:true},
+ light:{bg:'#FFFCF2'},mono:{bg:'#FFD52A',mono:true}
+};
+let n=0;const uid=()=>'u'+(n++);
+const HEX='60,12 103.3,37 103.3,87 60,112 16.7,87 16.7,37';
+const TOP='60,12 103.3,37 60,62 16.7,37', LEFT='16.7,37 60,62 60,112 16.7,87', RIGHT='60,62 103.3,37 103.3,87 60,112';
+const ENDS=[[16.7,37],[103.3,37],[60,112]];
+
+/* Y built from three arms, each tapering from w0 (centre) to w1 (edge), clipped to the cube */
+function yPath(w0,w1){let d='';
+ for(const [x,y] of ENDS){const dx=x-60,dy=y-62,L=Math.hypot(dx,dy),nx=-dy/L,ny=dx/L,ex=x+dx/L*10,ey=y+dy/L*10;
+  const P=[[60+nx*w0,62+ny*w0],[ex+nx*w1,ey+ny*w1],[ex-nx*w1,ey-ny*w1],[60-nx*w0,62-ny*w0]];
+  d+='M'+P.map(p=>p[0].toFixed(2)+' '+p[1].toFixed(2)).join(' L')+' Z ';}
+ return d;}
+
+function draw(o,c,sm){
+ const k=uid(),g=uid(),gr=uid();
+ const F=c.mono?['#16142B','#16142B','#16142B']:c.glow?['#3b3572','#2A2160','#211b4f']:['#2A2160','#16142B','#0d0c1c'];
+ const w0=sm?Math.max(o.w0,5):o.w0, w1=sm?Math.max(o.w1,5):o.w1;
+ const d=yPath(w0,w1), fill=c.mono?c.bg:`url(#${gr})`, glow=!c.mono&&!sm;
+ return `<defs><clipPath id="${k}"><polygon points="${HEX}"/></clipPath>
+ <radialGradient id="${gr}" gradientUnits="userSpaceOnUse" cx="60" cy="62" r="56"><stop offset="0" stop-color="#FFFDF0"/><stop offset=".22" stop-color="#FFF1B8"/><stop offset=".5" stop-color="#FFD52A"/><stop offset="1" stop-color="#FF9F1C"/></radialGradient>
+ ${glow?`<filter id="${g}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${4+o.w0*.35}"/></filter>`:''}</defs>
+ <polygon points="${TOP}" fill="${F[0]}"/><polygon points="${LEFT}" fill="${F[1]}"/><polygon points="${RIGHT}" fill="${F[2]}"/>
+ ${glow?`<g class="seam-glow" filter="url(#${g})" opacity=".85"><path d="${yPath(w0+2,w1+2)}" fill="#FF9F1C"/><circle cx="60" cy="62" r="${w0+3}" fill="#FFD52A"/></g>`:''}
+ <g class="seam" clip-path="url(#${k})"><path d="${d}" fill="${fill}"/><circle cx="60" cy="62" r="${w0}" fill="${fill}"/></g>`;
+}
+
+const O=[
+ {key:'A',name:'Current',note:'thin seams',w0:2.75,w1:2.75},
+ {key:'A1',name:'Bold',note:'about twice as thick',w0:6,w1:6},
+ {key:'A2',name:'Broad',note:'heaviest even weight',w0:9.5,w1:9.5},
+ {key:'A3',name:'Burst',note:'wide at the centre, sharp at the edges',w0:13,w1:3},
+ {key:'A4',name:'Beams',note:'narrow at the centre, opening out',w0:3.5,w1:13}
+];
+const mark=(o,th,s,anim)=>`<svg viewBox="0 0 120 120" width="${s}" height="${s}" aria-hidden="true" ${anim?'class="anim"':''} style="overflow:visible">${draw(o,T[th],s<=28)}</svg>`;
+
+document.getElementById('strip').innerHTML=O.map(o=>`<a href="#o${o.key}">${mark(o,'stage',130,true)}<span><b>${o.key} · ${o.name}</b>${o.note}</span></a>`).join('');
+document.getElementById('out').innerHTML=O.map(o=>`
+<div class="opt" id="o${o.key}">
+ <h2>${o.key} · ${o.name}<small>${o.note}</small></h2>
+ <div class="tl st">${mark(o,'stage',220,true)}<small>On Dusk</small></div>
+ <div class="tl p">${mark(o,'light',120)}<small>On Paper</small></div>
+ <div class="tl y">${mark(o,'mono',120)}<small>One colour</small></div>
+ <div class="tl s"><div class="row">${mark(o,'dark',48)}${mark(o,'dark',32)}${mark(o,'dark',16)}</div><div class="row">${mark(o,'light',32).replace('<svg','<svg style="background:#FFFCF2;border-radius:6px;padding:3px"')}${mark(o,'light',16).replace('<svg','<svg style="background:#FFFCF2;border-radius:3px"')}</div><div class="av">${mark(o,'dark',40)}</div><small>48, 32, 16 px, avatar</small></div>
+ <div class="lock">${mark(o,'light',52)}<span class="wm">The Yellow Works</span></div>
+</div>`).join('');
+</script>
+</body></html>

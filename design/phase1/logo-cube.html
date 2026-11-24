@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cube Y explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#FFD52A;--marigold:#FF9F1C;--dusk:#16142B;--paper:#FFFCF2;--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}svg{display:block;max-width:100%;height:auto}
+body{margin:0;background:var(--dusk);color:var(--paper);font:16px/1.55 var(--body)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.intro{padding:52px 0 36px}
+.intro h1{font:800 clamp(36px,6.5vw,80px)/.98 var(--display);letter-spacing:-.045em;margin:0 0 16px;max-width:15ch}
+.intro p{max-width:64ch;color:#FFFCF2c0;margin:0 0 10px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:28px}
+.gal a{background:#1f1c3a;border-radius:18px;padding:22px 10px 12px;display:grid;justify-items:center;gap:12px;color:var(--paper);text-decoration:none;font-size:13px;text-align:center}
+.gal a:hover,.gal a:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.gal svg{width:84px;height:84px}
+.picks{margin-top:20px}.picks b{color:var(--sun)}
+section.cn{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:12px;padding:12px 0}
+.stage{background:#100f22;border-radius:24px;min-height:460px;display:grid;place-items:center;position:relative;padding:28px;overflow:hidden}
+.stage:before{content:"";position:absolute;inset:auto 10% -30% 10%;height:60%;background:radial-gradient(50% 60% at 50% 100%,#FFD52A1f,transparent 70%)}
+.hero{display:grid;place-items:center;width:100%;position:relative}.stage svg.big{width:min(300px,70%);position:relative}
+.stage .no{position:absolute;left:20px;top:16px;font:600 13px var(--body);color:#FFFCF2a0}
+.replay{position:absolute;right:16px;top:12px;font:600 13px var(--body);background:transparent;color:var(--paper);border:1px solid #FFFCF288;border-radius:99px;padding:6px 12px;cursor:pointer;min-height:32px}
+.replay:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.side{display:grid;gap:12px;grid-template-rows:auto auto 1fr}
+.info{background:#1f1c3a;border-radius:24px;padding:24px}
+.info h2{font:800 clamp(30px,3.6vw,46px)/1 var(--display);letter-spacing:-.04em;margin:0 0 12px}
+.info p{margin:0 0 8px;color:#FFFCF2d0;font-size:15px}
+.info .hid{color:var(--sun)}.info .risk{font-size:13px;color:#FFFCF299}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tl{border-radius:20px;aspect-ratio:1;display:grid;place-items:center;position:relative}
+.tl svg{width:58%}
+.tl small{position:absolute;left:12px;bottom:8px;font-size:11px;opacity:.7}
+.tl.p{background:var(--paper);color:var(--dusk)}.tl.y{background:var(--sun);color:var(--dusk)}
+.tl.s{background:#1f1c3a;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}
+.tl.s .row{display:flex;gap:10px;align-items:flex-end}.tl.s .row svg{width:auto}
+.av{width:46px;height:46px;border-radius:50%;background:var(--dusk);border:1px solid #ffffff22;display:grid;place-items:center;overflow:hidden}.av svg{width:64%}
+.lock{background:var(--paper);color:var(--dusk);border-radius:20px;display:flex;align-items:center;justify-content:center;gap:14px;padding:22px 16px;min-height:110px}
+.lock svg{width:56px;flex:none}
+.wm{font:800 clamp(20px,2.6vw,30px)/1 var(--display);letter-spacing:-.045em;white-space:nowrap}
+.foot{padding:40px 0 64px;color:#FFFCF2c0}.foot h2{color:var(--paper);font:800 34px/1.05 var(--display);letter-spacing:-.03em;margin:0 0 10px}
+
+/* motion: hero stage only */
+@keyframes pulse{50%{opacity:.35}}
+@keyframes seamOn{0%,30%{opacity:0}40%{opacity:.9}46%{opacity:.1}58%{opacity:1}64%{opacity:.4}76%,100%{opacity:1}}
+@keyframes bob{50%{transform:translateY(-5px)}}
+@keyframes beam{0%,100%{opacity:.55}50%{opacity:.85}}
+@keyframes exT{from{transform:translate(0,-26px);opacity:0}}
+@keyframes exL{from{transform:translate(-22px,13px);opacity:0}}
+@keyframes exR{from{transform:translate(22px,13px);opacity:0}}
+.anim .seam{animation:seamOn 1.6s linear .3s backwards}
+.anim .seam-glow{animation:seamOn 1.6s linear .3s backwards,pulse 2.6s ease-in-out 2s infinite}
+.anim .lid{animation:bob 3.2s ease-in-out infinite}
+.anim .beam{animation:beam 3.2s ease-in-out infinite}
+.anim .ex-t{animation:exT .9s var(--ease) .2s backwards}
+.anim .ex-l{animation:exL .9s var(--ease) .35s backwards}
+.anim .ex-r{animation:exR .9s var(--ease) .5s backwards}
+@media (prefers-reduced-motion:reduce){.anim *{animation:none!important}}
+@media (max-width:900px){section.cn{grid-template-columns:1fr}.stage{min-height:320px}}
+@media (max-width:480px){.tiles{grid-template-columns:1fr 1fr}.tl.s{grid-column:1/-1;aspect-ratio:auto;padding:18px;flex-direction:row}.lock{flex-direction:column}}
+</style></head><body>
+
+<div class="wrap intro">
+<h1>Cube Y, pushed six ways</h1>
+<p>Same idea every time: a building block whose edges hide a Y. Each variation asks a different question of it. What if the light came from inside? What if the box opened? What if it were a toy?</p>
+<p>The original is kept first for comparison. Use Replay on the animated ones. With reduced motion on, they appear in their final state.</p>
+<div class="gal" id="gal"></div>
+<p class="picks">My top three: <b>A, seams of light</b> · <b>C, alphabet block</b> · <b>B, open box</b>.</p>
+</div>
+
+<main class="wrap" id="out"></main>
+
+<div class="wrap foot">
+<h2>Pick the one to finalise</h2>
+<p>You can also combine them, for example the seams of light for the logo and the open box as the hero animation. After you choose, I will run the conflict checks, rebuild the mark precisely on an isometric grid and produce the full logo set.</p>
+</div>
+
+<noscript><p class="wrap">This sheet draws the marks with JavaScript.</p></noscript>
+<script>
+const T={
+ dark:{bg:'#16142B',ink:'#FFFCF2',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',glow:true},
+ stage:{bg:'#100f22',ink:'#FFFCF2',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8',glow:true},
+ light:{bg:'#FFFCF2',ink:'#16142B',on:'#16142B',lit:'#FFD52A',lit2:'#FF9F1C',soft:'#FFF1B8'},
+ mono:{bg:'#FFD52A',ink:'#16142B',on:'#FFD52A',lit:'#16142B',lit2:'#16142B',soft:'#16142B',mono:true}
+};
+let n=0;const uid=()=>'u'+(n++);
+const blur=(id,s)=>`<filter id="${id}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${s}"/></filter>`;
+/* isometric hexagon, centre (60,62), edge 50 */
+const TOP='60,12 103.3,37 60,62 16.7,37', LEFT='16.7,37 60,62 60,112 16.7,87', RIGHT='60,62 103.3,37 103.3,87 60,112';
+const YP='M60 62 L16.7 37 M60 62 L103.3 37 M60 62 V112';
+const faces=c=>c.mono?[c.ink,c.ink,c.ink]:c.glow?[c.soft,c.lit,c.lit2]:[c.lit,c.lit2,c.ink];
+const orig=(c,sm)=>{const [a,b,d]=faces(c);return `<polygon points="${TOP}" fill="${a}"/><polygon points="${LEFT}" fill="${b}"/><polygon points="${RIGHT}" fill="${d}"/>
+ <path d="M60 62 L14 35.4 M60 62 L106 35.4 M60 62 V114" stroke="${c.bg}" stroke-width="${sm?8:5}" stroke-linecap="round"/>`};
+
+const V=[
+{key:'0',name:'Original',
+ idea:'The starting point: a yellow block lit from above, with the Y in the seams.',
+ hid:'Kept here so you can compare each variation against it.',
+ risk:'Clean and solid, but the quietest of the set.',
+ d:orig},
+
+{key:'A',name:'Seams of light',anim:true,
+ idea:'Flip it. The block is dark, and the light leaks out through its seams.',
+ hid:'The glowing seams are the Y. It is the “lights on” idea in its purest form: something closed, with light breaking through.',
+ risk:'It depends on a dark block, so on yellow it becomes a Dusk block with a yellow-cut Y. That still reads well.',
+ d:(c,sm)=>{const g=uid();
+  const F=c.mono?[c.ink,c.ink,c.ink]:c.glow?['#3b3572','#2A2160','#211b4f']:['#2A2160','#16142B','#0d0c1c'];
+  if(c.mono)return `<polygon points="${TOP}" fill="${F[0]}"/><polygon points="${LEFT}" fill="${F[1]}"/><polygon points="${RIGHT}" fill="${F[2]}"/><path d="${YP}" stroke="${c.bg}" stroke-width="${sm?9:6}" stroke-linecap="round"/>`;
+  return `<defs>${sm?'':blur(g,5)}</defs>
+  <polygon points="${TOP}" fill="${F[0]}"/><polygon points="${LEFT}" fill="${F[1]}"/><polygon points="${RIGHT}" fill="${F[2]}"/>
+  ${sm?'':`<path class="seam-glow" d="${YP}" stroke="#FF9F1C" stroke-width="13" stroke-linecap="round" filter="url(#${g})"/>`}
+  <path class="seam" d="${YP}" stroke="#FFD52A" stroke-width="${sm?9:5.5}" stroke-linecap="round"/>
+  ${sm?'':`<path class="seam" d="${YP}" stroke="#FFFDF0" stroke-width="1.6" stroke-linecap="round" opacity=".9"/><circle class="seam-glow" cx="60" cy="62" r="7" fill="#FFF1B8" filter="url(#${g})"/>`}`}},
+
+{key:'B',name:'Open box',anim:true,
+ idea:'The lid lifts off and light pours out of the block.',
+ hid:'The rim and the front edge still draw the Y. It reads as unboxing: we open up your business and let people see inside.',
+ risk:'The most illustrative variation. At favicon size it falls back to the closed cube.',
+ d:(c,sm)=>{if(sm)return orig(c,sm);
+  const [a,b,d]=faces(c);const g=uid();
+  const inner=c.mono?c.bg:(c.glow?'#0f0d20':'#16142B');
+  return `<defs>${c.glow?blur(g,6):''}</defs>
+  <polygon points="23.6,51 60,72 60,114 23.6,93" fill="${b}"/><polygon points="60,72 96.4,51 96.4,93 60,114" fill="${d}"/>
+  <polygon points="60,30 96.4,51 60,72 23.6,51" fill="${inner}"/>
+  ${c.mono?'':`<polygon class="beam" points="23.6,51 60,72 96.4,51 92,24 60,40 28,24" fill="${c.glow?c.lit:c.soft}" opacity="${c.glow?.32:.6}"/>${c.glow?`<ellipse class="beam" cx="60" cy="52" rx="26" ry="12" fill="${c.lit}" filter="url(#${g})" opacity=".8"/>`:''}`}
+  <path d="M60 72 L23.6 51 M60 72 L96.4 51 M60 72 V114" stroke="${c.mono?c.ink:c.bg}" stroke-width="4" stroke-linecap="round"/>
+  <g class="lid"><g transform="rotate(-9 60 18)"><polygon points="60,0 96.4,21 60,42 23.6,21" fill="${c.mono?c.ink:a}"/><polygon points="23.6,21 60,42 60,47 23.6,26" fill="${c.mono?c.ink:b}"/><polygon points="60,42 96.4,21 96.4,26 60,47" fill="${c.mono?c.ink:d}"/></g></g>`}},
+
+{key:'C',name:'Alphabet block',
+ idea:'A child’s wooden alphabet block, with Y on one face and W on the other.',
+ hid:'The seams still draw a Y, and the faces spell YW. Playful, honest and about building, which is exactly what we do for small businesses.',
+ risk:'The letters disappear below 32 px, so small sizes use the plain cube. The final letters would be drawn by hand rather than typeset.',
+ d:(c,sm)=>{if(sm)return orig(c,sm);const [a,b,d]=faces(c);
+  const txt=`font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="40" text-anchor="middle"`;
+  const lc=c.mono?c.bg:c.on, rc=c.mono?c.bg:(c.glow?c.on:c.lit);
+  return `<polygon points="${TOP}" fill="${a}"/><polygon points="${LEFT}" fill="${b}"/><polygon points="${RIGHT}" fill="${d}"/>
+  <text ${txt} fill="${lc}" transform="matrix(.866 .5 0 1 16.7 37)" x="25" y="41">Y</text>
+  <text ${txt} fill="${rc}" transform="matrix(.866 -.5 0 1 60 62)" x="25" y="41">W</text>
+  ${c.mono?'':`<circle cx="60" cy="37" r="6" fill="${c.glow?c.lit2:c.ink}" opacity=".85"/>`}
+  <path d="M60 62 L14 35.4 M60 62 L106 35.4 M60 62 V114" stroke="${c.bg}" stroke-width="4" stroke-linecap="round"/>`}},
+
+{key:'D',name:'Exploded',anim:true,
+ idea:'The three faces pulled slightly apart, like an exploded technical drawing.',
+ hid:'The gap between the faces becomes a bold, open Y. It feels like something being built, or about to snap together.',
+ risk:'In motion it assembles beautifully. Static, it can look less solid than the original.',
+ d:(c,sm)=>{const [a,b,d]=faces(c);const e=sm?3:7;
+  return `<g transform="translate(60 62) scale(.88) translate(-60 -62)">
+  <g class="ex-t"><polygon transform="translate(0 ${-e})" points="${TOP}" fill="${a}"/></g>
+  <g class="ex-l"><polygon transform="translate(${-.866*e} ${.5*e})" points="${LEFT}" fill="${b}"/></g>
+  <g class="ex-r"><polygon transform="translate(${.866*e} ${.5*e})" points="${RIGHT}" fill="${d}"/></g></g>`}},
+
+{key:'E',name:'Soft toy',
+ idea:'The same block with rounded corners and a glossy highlight, in the “soft-touch premium toy” 3D style.',
+ hid:'It is the 2D twin of the hero 3D object, so logo and hero share one shape.',
+ risk:'Rounded isometric cubes are popular in app icons. The visible Y seams and the yellow split keep it ours.',
+ d:(c,sm)=>{const [a,b,d]=faces(c);const s=sm?0:9;
+  return `<g transform="translate(60 62) scale(.86) translate(-60 -62)" stroke-linejoin="round">
+  <polygon points="${TOP}" fill="${a}" stroke="${a}" stroke-width="${s}"/><polygon points="${LEFT}" fill="${b}" stroke="${b}" stroke-width="${s}"/><polygon points="${RIGHT}" fill="${d}" stroke="${d}" stroke-width="${s}"/>
+  ${c.mono||sm?'':`<ellipse cx="54" cy="33" rx="15" ry="6" fill="#FFFFFF" opacity=".5" transform="rotate(-8 54 33)"/><path d="M22 46 V74" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".35"/>`}
+  <path d="${YP}" stroke="${c.bg}" stroke-width="${sm?9:7}" stroke-linecap="round"/></g>`}},
+
+{key:'F',name:'Line cube',
+ idea:'The block drawn as a single line, with only the Y picked out in yellow.',
+ hid:'The most minimal version: the outline says block, and the yellow says Y.',
+ risk:'The lightest in weight, so it needs a thicker stroke at small sizes. It is the most “studio” and the least toy-like.',
+ d:(c,sm)=>{const w=sm?11:7;const y=c.mono?c.ink:(c.glow?c.lit:c.lit2);
+  return `<g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(60 62) scale(.9) translate(-60 -62)">
+  <path d="M60 12 L103.3 37 V87 L60 112 L16.7 87 V37 Z" stroke="${c.ink}" stroke-width="${w}"/>
+  <path d="${YP}" stroke="${y}" stroke-width="${w}"/></g>`}}
+];
+
+const mark=(v,th,s,cls='',anim=false)=>`<svg viewBox="0 0 120 120" width="${s}" height="${s}" aria-hidden="true" class="${cls}${anim?' anim':''}" style="overflow:visible">${v.d(T[th],s<=28)}</svg>`;
+
+document.getElementById('gal').innerHTML=V.map(v=>`<a href="#v${v.key}">${mark(v,'dark',84)}<span>${v.key==='0'?'Original':v.key+' · '+v.name}</span></a>`).join('');
+document.getElementById('out').innerHTML=V.map(v=>`
+<section class="cn" id="v${v.key}">
+ <div class="stage"><span class="no">${v.key==='0'?'Original':'Variation '+v.key}</span><span class="hero" data-k="${v.key}">${mark(v,'stage',300,'big',!!v.anim)}</span>${v.anim?`<button class="replay" type="button" data-k="${v.key}">Replay</button>`:''}</div>
+ <div class="side">
+  <div class="info"><h2>${v.name}</h2><p>${v.idea}</p><p class="hid">${v.hid}</p><p class="risk">${v.risk}</p></div>
+  <div class="tiles">
+   <div class="tl p">${mark(v,'light',120)}<small>On Paper</small></div>
+   <div class="tl y">${mark(v,'mono',120)}<small>One colour</small></div>
+   <div class="tl s"><div class="row">${mark(v,'dark',32)}${mark(v,'dark',16)}</div><div class="av">${mark(v,'dark',40)}</div><small>32, 16 px, avatar</small></div>
+  </div>
+  <div class="lock">${mark(v,'light',56)}<span class="wm">The Yellow Works</span></div>
+ </div>
+</section>`).join('');
+document.addEventListener('click',e=>{const b=e.target.closest('.replay');if(!b)return;const v=V.find(x=>x.key===b.dataset.k);
+ document.querySelector(`.hero[data-k="${v.key}"]`).innerHTML=mark(v,'stage',300,'big',true)});
+</script>
+</body></html>

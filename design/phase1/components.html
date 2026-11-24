@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Component styles</title>
+<link rel="icon" href="../../public/brand/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../src/styles/tokens.css">
+<style>
+:root{--font-bricolage:'Bricolage Grotesque';--font-dm-sans:'DM Sans';--accent:var(--yw-sun);--on-accent:var(--yw-dusk)}
+*{box-sizing:border-box}
+body{margin:0}
+.wrap{max-width:var(--yw-container);margin:0 auto;padding:0 var(--yw-gutter)}
+.top{background:var(--yw-grad-dusk-sky);color:var(--yw-text-on-dark);padding:var(--yw-space-8) 0 var(--yw-space-6)}
+.top h1{font-size:var(--yw-text-h1);margin:0 0 var(--yw-space-3)}
+.top p{max-width:var(--yw-measure);color:var(--yw-text-on-dark-muted);margin:0 0 var(--yw-space-2);font-size:var(--yw-text-sm)}
+section.s{padding:var(--yw-space-7) 0;border-bottom:1px solid #16142b1a}
+section.s>.wrap>h2{font-size:var(--yw-text-h3);margin:0 0 var(--yw-space-2)}
+section.s>.wrap>p{max-width:var(--yw-measure);margin:0 0 var(--yw-space-5);font-size:var(--yw-text-sm);color:var(--yw-text-muted)}
+.row{display:flex;gap:var(--yw-space-4);flex-wrap:wrap;align-items:center;margin-bottom:var(--yw-space-4)}
+.lab{font-size:var(--yw-text-xs);color:var(--yw-text-muted);display:block;margin-bottom:var(--yw-space-2)}
+.dk{background:var(--yw-grad-dusk-sky);color:var(--yw-text-on-dark);padding:var(--yw-space-5);border-radius:var(--yw-radius-lg)}
+.dk .lab{color:var(--yw-text-on-dark-muted)}
+.grid{display:grid;gap:var(--yw-space-5)}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--yw-space-2);min-height:var(--yw-target-min);padding:.8rem 1.6rem;border:0;border-radius:var(--yw-radius-pill);font:var(--yw-weight-ui) var(--yw-text-sm)/1 var(--yw-font-body);cursor:pointer;text-decoration:none;white-space:nowrap;
+ transition:transform var(--yw-dur-fast) var(--yw-ease-out),box-shadow var(--yw-dur-fast) var(--yw-ease-out),background var(--yw-dur-fast)}
+.btn-primary{background:var(--yw-sun);color:var(--yw-dusk);box-shadow:var(--yw-shadow-press)}
+.btn-primary:hover,.btn-primary.is-hover{background:#FFDE55}
+.btn-primary:active,.btn-primary.is-active{transform:translateY(3px);box-shadow:var(--yw-shadow-press-active);background:var(--yw-marigold)}
+.btn-dark{background:var(--yw-dusk);color:var(--yw-paper);box-shadow:var(--yw-shadow-press-dark)}
+.btn-dark:hover,.btn-dark.is-hover{background:var(--yw-twilight)}
+.btn-dark:active,.btn-dark.is-active{transform:translateY(3px);box-shadow:0 1px 0 #000}
+.btn-outline{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.btn-outline:hover,.btn-outline.is-hover{background:rgb(255 213 42 / .16)}
+.btn-outline:active,.btn-outline.is-active{transform:translateY(1px)}
+.btn:focus-visible,.btn.is-focus{outline:3px solid var(--yw-focus);outline-offset:3px}
+.dk .btn:focus-visible,.dk .btn.is-focus{outline-color:var(--yw-sun)}
+.btn[disabled],.btn.is-disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+.btn-sm{min-height:2.25rem;padding:.55rem 1.1rem;font-size:var(--yw-text-xs)}
+@media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
+
+/* ---------- chips and tags ---------- */
+.chip{display:inline-flex;align-items:center;gap:var(--yw-space-2);min-height:var(--yw-target-min);padding:.5rem 1rem;border:2px solid transparent;border-radius:var(--yw-radius-pill);background:var(--yw-butter);color:var(--yw-dusk);font:var(--yw-weight-ui) var(--yw-text-sm)/1 var(--yw-font-body);cursor:pointer;transition:background var(--yw-dur-fast),border-color var(--yw-dur-fast)}
+.chip:hover{border-color:var(--chip-c,var(--yw-sun))}
+.chip[aria-pressed="true"]{background:var(--chip-c,var(--yw-sun));color:var(--chip-on,var(--yw-dusk));border-color:var(--yw-dusk)}
+.chip:focus-visible{outline:3px solid var(--yw-focus);outline-offset:2px}
+.chip[data-i=clinic]{--chip-c:var(--yw-clinic)}.chip[data-i=gym]{--chip-c:var(--yw-gym)}.chip[data-i=realty]{--chip-c:var(--yw-realty);--chip-on:#fff}.chip[data-i=other]{--chip-c:var(--yw-sun)}
+.chip.feat{cursor:default;background:var(--yw-butter);min-height:2.5rem}
+.tag{display:inline-block;padding:.25rem .7rem;border-radius:var(--yw-radius-sm);font:var(--yw-weight-ui) var(--yw-text-xs)/1.3 var(--yw-font-body)}
+.tag-concept{background:var(--yw-dusk);color:var(--yw-sun)}
+.tag-next{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.tag-live{background:var(--yw-clinic);color:var(--yw-dusk)}
+
+/* ---------- form fields ---------- */
+.field{display:grid;gap:var(--yw-space-2)}
+.field label{font:var(--yw-weight-ui) var(--yw-text-sm)/1.3 var(--yw-font-body)}
+.input,.textarea{width:100%;min-height:var(--yw-target-min);padding:.8rem 1rem;border:2px solid transparent;border-radius:var(--yw-radius-md);background:var(--yw-butter);color:var(--yw-dusk);font:var(--yw-text-body)/1.4 var(--yw-font-body);transition:border-color var(--yw-dur-fast),background var(--yw-dur-fast)}
+.textarea{min-height:7rem;resize:vertical}
+.input::placeholder{color:rgb(22 20 43 / .6)}
+.input:hover,.input.is-hover{border-color:rgb(22 20 43 / .3)}
+.input:focus,.input.is-focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 35%,transparent)}
+.input.is-error{border-color:#B3261E;background:#FFF6F5}
+.input.is-ok{border-color:#0E7A5F}
+.hint{font-size:var(--yw-text-xs);color:var(--yw-text-muted)}
+.err{font-size:var(--yw-text-xs);color:#B3261E;font-weight:var(--yw-weight-ui);display:flex;gap:6px;align-items:flex-start}
+.input[disabled]{opacity:.55;cursor:not-allowed}
+
+/* ---------- cards: varied on purpose, not one grey-shadow card ---------- */
+.card{border-radius:var(--yw-radius-xl);padding:var(--yw-space-5);min-height:200px;display:flex;flex-direction:column;gap:var(--yw-space-3)}
+.card h3{font-size:var(--yw-text-h4);margin:0}.card p{margin:0;font-size:var(--yw-text-sm)}
+.card-paper{background:#fff;box-shadow:var(--yw-shadow-lift)}
+.card-dusk{background:var(--yw-dusk);color:var(--yw-paper)}
+.card-sun{background:var(--yw-sun);color:var(--yw-dusk);box-shadow:var(--yw-shadow-press)}
+.card-sun:active{transform:translateY(3px);box-shadow:var(--yw-shadow-press-active)}
+.card-clinic{background:var(--yw-clinic);color:var(--yw-dusk)}
+.card-realty{background:var(--yw-realty);color:#fff}
+.card-gym{background:var(--yw-gym);color:var(--yw-dusk)}
+
+/* ---------- browser frame ---------- */
+.bframe{border-radius:var(--yw-radius-lg);overflow:hidden;background:#fff;border:3px solid var(--bf,var(--yw-clinic));box-shadow:var(--yw-shadow-lift)}
+.bbar{display:flex;align-items:center;gap:var(--yw-space-3);padding:.6rem .9rem;background:var(--yw-butter);border-bottom:1px solid #16142b1a}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#16142b33}
+.url{flex:1;background:#fff;border-radius:99px;padding:.25rem .8rem;font-size:var(--yw-text-xs);color:var(--yw-text-muted)}
+.bview{height:230px;overflow:hidden;position:relative}
+.bview .page{padding:1rem;display:grid;gap:.6rem}
+.bview .blk{border-radius:8px;background:var(--yw-butter);height:34px}.bview .blk.big{height:74px;background:var(--bf,var(--yw-clinic))}.bview .blk.dk2{background:var(--yw-dusk)}
+.bframe.phone{width:170px;border-radius:26px;border-width:5px;border-color:var(--yw-dusk)}
+.bframe.phone .bview{height:300px}
+
+/* ---------- accordion ---------- */
+.acc{border-top:2px solid var(--yw-dusk)}
+.acc h3{margin:0;font-size:inherit}
+.acc button.q{all:unset;box-sizing:border-box;display:flex;width:100%;justify-content:space-between;align-items:center;gap:var(--yw-space-4);min-height:3.5rem;padding:var(--yw-space-3) 0;cursor:pointer;font:var(--yw-weight-heading) var(--yw-text-h4)/1.2 var(--yw-font-display);letter-spacing:var(--yw-track-display)}
+.acc button.q:focus-visible{outline:3px solid var(--yw-focus);outline-offset:2px}
+.acc .pm{width:28px;height:28px;flex:none;position:relative}
+.acc .pm:before,.acc .pm:after{content:"";position:absolute;left:5px;right:5px;top:13px;height:2.5px;background:currentColor;border-radius:2px;transition:transform var(--yw-dur-base) var(--yw-ease-out)}
+.acc .pm:after{transform:rotate(90deg)}
+.acc button[aria-expanded=true] .pm:after{transform:rotate(0)}
+.acc .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--yw-dur-base) var(--yw-ease-out)}
+.acc .a>div{overflow:hidden}.acc .a p{margin:0 0 var(--yw-space-4);max-width:var(--yw-measure)}
+.acc button[aria-expanded=true]+.a,.acc .a.open{grid-template-rows:1fr}
+.acc .item{border-bottom:2px solid var(--yw-dusk)}
+@media (prefers-reduced-motion:reduce){.acc .a,.acc .pm:before,.acc .pm:after{transition:none}}
+
+.rules{font-size:var(--yw-text-sm);max-width:var(--yw-measure)}.rules li{margin-bottom:var(--yw-space-2)}
+.ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.icos{display:flex;gap:var(--yw-space-4);flex-wrap:wrap}.icos span{display:grid;justify-items:center;gap:6px;font-size:var(--yw-text-xs);color:var(--yw-text-muted)}
+@media (max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+</style></head><body>
+
+<div class="top"><div class="wrap">
+<h1>Component styles</h1>
+<p>Built only from <code>src/styles/tokens.css</code>: no hard-coded colours, radii or durations in the components. Forced states (hover, focus, active, error) are shown next to live ones, so you can click, tab and type in every example.</p>
+<p>These are Phase 1 design references, plain HTML and CSS. React components come in Phase 2.</p>
+</div></div>
+
+<section class="s"><div class="wrap"><h2>Buttons</h2><p>Pill shape, 44 px minimum target, tactile press: the button sinks 3 px and its marigold shadow collapses. No tilt, no scale. Label says exactly what happens.</p>
+<div class="grid g2"><div>
+ <span class="lab">Primary, on light</span>
+ <div class="row"><button class="btn btn-primary">Let’s build your website</button><button class="btn btn-primary is-hover">Hover</button><button class="btn btn-primary is-active">Pressed</button><button class="btn btn-primary is-focus">Focus</button><button class="btn btn-primary" disabled>Disabled</button></div>
+ <span class="lab">Dark and outline</span>
+ <div class="row"><button class="btn btn-dark">Send enquiry</button><button class="btn btn-dark is-hover">Hover</button><button class="btn btn-outline">Explore our work</button><button class="btn btn-outline is-hover">Hover</button><button class="btn btn-primary btn-sm">Small</button></div>
+</div><div class="dk">
+ <span class="lab">On Dusk</span>
+ <div class="row"><button class="btn btn-primary">Let’s build your website</button><button class="btn btn-outline">Explore our work</button><button class="btn btn-outline is-focus">Focus ring</button></div>
+</div></div></div></section>
+
+<section class="s"><div class="wrap"><h2>Chips and tags</h2><p>Business-type chips recolour the form accent when selected (mint, coral, cobalt, yellow). Feature chips are static. Tags label status: <i>Concept project</i> on every unreal example, <i>Coming next</i> on anything not built.</p>
+<span class="lab">Business type (click to select; the form below uses the same colour)</span>
+<div class="row" id="types" role="group" aria-label="Business type">
+ <button class="chip" data-i="clinic" aria-pressed="true">Clinic</button><button class="chip" data-i="gym" aria-pressed="false">Gym</button><button class="chip" data-i="realty" aria-pressed="false">Real estate</button><button class="chip" data-i="other" aria-pressed="false">Other</button></div>
+<span class="lab">Feature chips and tags</span>
+<div class="row"><span class="chip feat">Doctor profiles</span><span class="chip feat">Appointment requests</span><span class="chip feat">WhatsApp enquiry</span><span class="tag tag-concept">Concept project</span><span class="tag tag-live">Live</span></div>
+<div class="dk"><div class="row" style="margin:0"><span class="tag tag-next">Coming next</span><span class="tag tag-next">Lead follow-ups</span><span class="tag tag-concept" style="background:var(--yw-sun);color:var(--yw-dusk)">Concept project</span></div></div>
+</div></section>
+
+<section class="s"><div class="wrap"><h2>Form fields</h2><p>Butter fill, 2 px border that takes the selected business-type colour on focus. Labels are always visible. Errors say what went wrong and how to fix it, sit under the field and are linked to it. No apology.</p>
+<div class="grid g3" id="form" style="--accent:var(--yw-clinic)">
+ <div class="field"><label for="f1">Name</label><input class="input" id="f1" placeholder="Your full name"><span class="hint">Default. Click to see the focus state.</span></div>
+ <div class="field"><label for="f2">Contact number</label><input class="input is-error" id="f2" value="98765" aria-invalid="true" aria-describedby="e2"><span class="err" id="e2"><svg class="ico" style="width:16px;height:16px;flex:none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>Enter a 10-digit mobile number, for example 98XXXXXXXX.</span></div>
+ <div class="field"><label for="f3">City</label><input class="input is-ok" id="f3" value="[TARGET_CITY]"><span class="hint">Valid</span></div>
+ <div class="field"><label for="f4">Business name</label><input class="input is-focus" id="f4" placeholder="Forced focus state"><span class="hint">Focus: accent border and soft ring.</span></div>
+ <div class="field"><label for="f5">Message</label><textarea class="textarea input" id="f5" placeholder="Tell us about your business"></textarea></div>
+ <div class="field"><label for="f6">Disabled</label><input class="input" id="f6" disabled value="Sending…"><span class="hint">While the form is submitting.</span></div>
+</div></div></section>
+
+<section class="s"><div class="wrap"><h2>Cards</h2><p>Cards are deliberately not one identical rounded box. Each has a job: paper with a lift shadow, Dusk, a yellow press-tile (bento), and industry tints. Use them to set rhythm, not to chop every section into equal squares.</p>
+<div class="grid g4">
+ <div class="card card-paper"><span class="tag tag-live" style="align-self:start">Paper</span><h3>Website design</h3><p>A site that makes people want to get in touch.</p></div>
+ <div class="card card-dusk"><h3>Dusk</h3><p style="color:var(--yw-text-on-dark-muted)">Dark section tile for contrast and rhythm.</p></div>
+ <div class="card card-sun"><h3>Yellow press tile</h3><p>Sinks 3 px when pressed, like the buttons.</p></div>
+ <div class="card card-clinic"><h3>Clinic mint</h3><p>Industry tint. Dusk text.</p></div>
+ <div class="card card-realty"><h3>Realty cobalt</h3><p>White text only.</p></div>
+ <div class="card card-gym"><h3>Gym coral</h3><p>Dusk text at body size.</p></div>
+</div></div></section>
+
+<section class="s"><div class="wrap"><h2>Browser frame (showcase)</h2><p>Desktop and phone previews of concept sites. The frame border takes the industry colour. Always carries the Concept project tag. Built from lightweight markup or optimised screenshots, never a heavy iframe. The phone toggle is a real button.</p>
+<div class="row"><button class="btn btn-dark btn-sm" id="dev" aria-pressed="false">Show phone view</button><span class="tag tag-concept">Concept project</span></div>
+<div class="row" style="align-items:flex-start" id="frames">
+ <div class="bframe" style="--bf:var(--yw-clinic);flex:1;min-width:280px;max-width:640px"><div class="bbar"><span class="dots"><i></i><i></i><i></i></span><span class="url">greenleaf-clinic.example</span></div><div class="bview"><div class="page"><div class="blk big"></div><div class="blk"></div><div class="blk dk2"></div><div class="blk"></div></div></div></div>
+ <div class="bframe phone" style="--bf:var(--yw-clinic);display:none"><div class="bview"><div class="page"><div class="blk big"></div><div class="blk"></div><div class="blk dk2"></div><div class="blk"></div><div class="blk"></div></div></div></div>
+</div></div></section>
+
+<section class="s"><div class="wrap"><h2>Accordion (FAQ)</h2><p>Real buttons inside headings, <code>aria-expanded</code>, one open at a time optional. 56 px rows, plus and minus drawn with two bars so it animates without an icon font. Reduced motion removes the animation.</p>
+<div class="acc" style="max-width:760px" id="acc">
+ <div class="item"><h3><button class="q" aria-expanded="true" aria-controls="a1" id="q1">Will the website work on mobile?<span class="pm"></span></button></h3><div class="a open" id="a1" role="region" aria-labelledby="q1"><div><p>Yes. Every site we build is designed for phones first, then scaled up.</p></div></div></div>
+ <div class="item"><h3><button class="q" aria-expanded="false" aria-controls="a2" id="q2">How long does a website take?<span class="pm"></span></button></h3><div class="a" id="a2" role="region" aria-labelledby="q2"><div><p>[TIMELINE_PLACEHOLDER]</p></div></div></div>
+ <div class="item"><h3><button class="q" aria-expanded="false" aria-controls="a3" id="q3">Can I update my website later?<span class="pm"></span></button></h3><div class="a" id="a3" role="region" aria-labelledby="q3"><div><p>[UPDATE_POLICY_PLACEHOLDER]</p></div></div></div>
+</div></div></section>
+
+<section class="s"><div class="wrap"><h2>Icon rules</h2>
+<div class="grid g2"><ul class="rules">
+ <li><b>Interface icons:</b> Lucide only. One stroke width, 1.75 px at 24 px, round caps and joins, <code>currentColor</code>. Never mix icon sets.</li>
+ <li><b>Sizes:</b> 16, 20, 24, 32 px. Icon-only buttons keep a 44 px target and a text label for screen readers.</li>
+ <li><b>Illustrative icons:</b> the custom 3D set (see 3D style frames), used where an icon carries meaning on its own: industries, services, process, 404.</li>
+ <li><b>Brand icons</b> (WhatsApp and others) only from the official brand kit, used by its rules. A generic chat bubble everywhere else.</li>
+ <li><b>Never:</b> a red cross for clinics (legally protected in India). Use a heart-pulse, stethoscope, tooth or calendar.</li>
+</ul>
+<div><span class="lab">Examples (Lucide-style, drawn here as inline SVG)</span><div class="icos">
+ <span><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>calendar</span>
+ <span><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>map-pin</span>
+ <span><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-12 7l-5 1 1-4a8 8 0 1 1 16-4z"/></svg>message</span>
+ <span><svg class="ico" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>activity</span>
+ <span><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>user</span>
+ <span><svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>check</span></div></div></div></div></section>
+
+<section class="s" style="border:0"><div class="wrap"><h2>Photography rules</h2>
+<ul class="rules">
+ <li><b>Subject:</b> real Indian local businesses: a clinic reception, a gym floor, a property site visit. Commissioned, or stock with a commercial licence. Every source and licence goes in <code>docs/ASSET_LICENSES.md</code> before use.</li>
+ <li><b>Grade:</b> one house grade for every photo: warm highlights, shadows that lean toward Dusk, a slight yellow warmth. A Dusk-and-yellow duotone is allowed for background photos.</li>
+ <li><b>Composite:</b> photos sit inside phone or browser mockups with floating interface chips (“Appointment requested”, “Trial booked”, “Site visit Saturday 11:00”). Chips are interface examples and are labelled as sample data, never real customer data.</li>
+ <li><b>AI images:</b> only for abstract textures, 3D concepts and backgrounds. Never for people presented as staff, doctors, clients or testimonial authors, and never for fake portfolio work.</li>
+ <li><b>Never:</b> handshake, laptop-on-desk or thumbs-up stock; invented testimonials, clients or reviews.</li>
+ <li><b>Delivery:</b> AVIF with WebP fallback, correct sizes, lazy below the fold, descriptive alt text. The hero still is the LCP element, so it is preloaded and never lazy.</li>
+ <li><b>Not done:</b> no photographs have been chosen or licensed yet (decision D-09), so this page shows rules only.</li>
+</ul></div></section>
+
+<script>
+// business-type chips recolour the form accent
+const types=document.getElementById('types'),form=document.getElementById('form');
+const acc={clinic:'var(--yw-clinic)',gym:'var(--yw-gym)',realty:'var(--yw-realty)',other:'var(--yw-sun)'};
+types.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;types.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));form.style.setProperty('--accent',acc[b.dataset.i]);});
+// phone/desktop toggle
+const dev=document.getElementById('dev'),fr=document.querySelectorAll('#frames .bframe');
+dev.addEventListener('click',()=>{const p=dev.getAttribute('aria-pressed')!=='true';dev.setAttribute('aria-pressed',p);dev.textContent=p?'Show desktop view':'Show phone view';fr[0].style.display=p?'none':'';fr[1].style.display=p?'':'none';});
+// accordion
+document.getElementById('acc').addEventListener('click',e=>{const b=e.target.closest('button.q');if(!b)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',!open);const a=document.getElementById(b.getAttribute('aria-controls'));a.classList.toggle('open',!open);});
+</script>
+</body></html>

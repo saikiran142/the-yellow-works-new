@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero animatic: lights on</title>
+<link rel="icon" href="../../public/brand/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#FFD52A;--marigold:#FF9F1C;--dusk:#16142B;--twilight:#2A2160;--paper:#FFFCF2;--mint:#2FD4A7;--coral:#FF5A36;--cobalt:#4456FF;
+--display:'Bricolage Grotesque',system-ui,sans-serif;--body:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}img{display:block}
+body{margin:0;background:#0d0c1c;color:var(--paper);font:16px/1.5 var(--body)}
+.page{max-width:1240px;margin:0 auto;padding:24px 16px 60px}
+h1{font:800 clamp(28px,4.5vw,48px)/1 var(--display);letter-spacing:-.04em;margin:8px 0 10px}
+p.l{max-width:72ch;color:#FFFCF2c0;margin:0 0 8px;font-size:15px}
+.ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+button{font:600 14px var(--body);background:var(--sun);color:var(--dusk);border:0;border-radius:99px;padding:9px 18px;cursor:pointer;min-height:36px}
+button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.fw{position:relative;width:100%;overflow:hidden;border-radius:12px;background:#000}
+.fr{width:1440px;height:820px;position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;background:linear-gradient(180deg,#2A2160 0%,#16142B 70%);color:var(--paper);font-family:var(--body)}
+.nav{position:absolute;left:0;right:0;top:0;height:92px;padding:0 64px;display:flex;align-items:center;gap:40px;font-size:17px;font-weight:500}
+.nav img{height:44px}.nav .l{margin-left:auto;display:flex;gap:34px}
+.btn{display:inline-flex;font:600 18px var(--body);border-radius:99px;padding:16px 28px;white-space:nowrap}
+.btn.y{background:var(--sun);color:var(--dusk);box-shadow:0 4px 0 var(--marigold)}.btn.o{border:2px solid currentColor;margin-left:14px}
+.hl{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:.98;font-size:90px}
+.sw{position:relative;display:inline-block;color:var(--paper);padding:0 .1em;white-space:nowrap}
+.sw .top{position:absolute;left:.1em;top:0;color:var(--dusk)}
+.sw i{position:absolute;inset:.02em 0 .02em 0;background:var(--sun);z-index:-1;transform-origin:0 50%;border-radius:2px}
+.sw{z-index:0;isolation:isolate}
+.stage{position:absolute;right:130px;top:200px;width:420px;height:420px}
+.stage img{position:absolute;inset:0;width:100%;height:100%}
+.halo{position:absolute;right:-60px;top:70px;width:640px;height:640px;background:radial-gradient(50% 50% at 50% 50%,#FFD52A66,#FF9F1C22 45%,transparent 70%)}
+.panel{position:absolute;width:250px;border-radius:20px;padding:16px;font-size:14px;line-height:1.35;box-shadow:0 14px 34px #0006;color:var(--dusk)}
+.panel b{display:block;font:700 17px var(--display);letter-spacing:-.02em;margin-bottom:8px}
+.sl{display:flex;gap:6px;flex-wrap:wrap}.sl span{background:#fff8;border-radius:8px;padding:4px 8px;font-weight:600;font-size:13px}.sl span.on{background:var(--dusk);color:#fff}
+.tl{margin-top:18px;border-top:1px solid #FFFCF222;padding-top:14px;font-size:13px;color:#FFFCF2b0}
+.tl .row{position:relative;height:30px;margin-top:8px}
+.tl .row i{position:absolute;top:12px;height:6px;border-radius:3px}
+.tl .row span{position:absolute;top:0;font-size:12px;white-space:nowrap}
+.sheet{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.sheet figure{margin:0}.sheet figcaption{font-size:12px;color:#FFFCF2b0;margin-top:4px}
+@media (max-width:700px){.sheet{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="page" id="page">
+<h1>Hero animatic: lights on</h1>
+<p class="l">The page's one orchestrated moment, 1.8 seconds in total. The headline, copy and buttons are on screen from the first frame and never wait for the animation. Only the cube, the panels and the highlighter swipe move.</p>
+<div class="ctl"><button id="play" type="button">Replay</button><span class="l" style="margin:0">With reduced motion on, it shows the final frame at once.</span></div>
+<div class="fw" id="main"></div>
+<div class="tl" id="tl"></div>
+<div class="sheet" id="sheet"></div>
+</div>
+
+<script>
+/* timeline in ms. Everything finishes by 1800. */
+const T={cubeLit:[300,1000],swipe:[850,1450],panels:[[700,1350],[850,1500],[1000,1650]],settle:1800};
+
+function build(host){
+ host.innerHTML=`<div class="fr">
+  <div class="nav"><img src="../../public/brand/lockup-horizontal-reversed.svg" alt=""><span class="l"><span>Home</span><span>Services</span><span>Industries</span><span>Our work</span><span>About</span><span>Contact</span></span><span class="btn y" style="font-size:16px;padding:12px 22px">Let’s build your website</span></div>
+  <div style="position:absolute;left:64px;top:150px;width:800px">
+   <div style="font-size:19px;color:#FFFCF2cc;margin-bottom:16px">The digital growth studio for local business</div>
+   <div class="hl">Make your business <span class="sw"><i class="swipe"></i>the one they choose.<span class="top" aria-hidden="true">the one they choose.</span></span></div>
+   <p style="font-size:20px;line-height:1.5;color:#FFFCF2d9;max-width:640px;margin:24px 0 26px">We build bold, fast and mobile-friendly websites for clinics, gyms and real-estate businesses. Get discovered, build trust and turn more website visitors into genuine enquiries.</p>
+   <span class="btn y">Let’s build your website</span><span class="btn o">Explore our work</span></div>
+  <div class="halo"></div>
+  <div class="stage"><img class="cubeDim" src="../../public/brand/mark-color-glow.svg" alt="" style="filter:brightness(.34) saturate(.55)"><img class="cubeLit" src="../../public/brand/mark-color-glow.svg" alt=""></div>
+  <div class="panel p1" style="right:30px;top:130px;background:var(--mint)"><b>Book an appointment</b><div class="sl"><span>9:30</span><span class="on">10:15</span><span>11:00</span><span>2:45</span></div></div>
+  <div class="panel p2" style="right:420px;top:560px;background:var(--coral)"><b>Join a gym</b>Monthly plan<div class="sl" style="margin-top:8px"><span class="on">Start a free trial</span></div></div>
+  <div class="panel p3" style="right:50px;top:520px;background:var(--cobalt);color:#fff"><b>Schedule a site visit</b><div class="sl"><span style="background:#fff3">Sat</span><span style="background:#fff;color:var(--dusk)">11:00</span></div></div>
+ </div>`;
+ return host;
+}
+const ease='cubic-bezier(0.22,1,0.36,1)';
+function animate(root){
+ const q=s=>root.querySelector(s), a=[];
+ const A=(el,kf,[s,e],easing=ease)=>{const x=el.animate(kf,{duration:e-s,delay:s,fill:'both',easing});a.push(x);return x};
+ // cube: dim at start; the bright copy flickers on (the seams light up)
+ A(q('.cubeLit'),[{opacity:0},{opacity:.95,offset:.22},{opacity:.12,offset:.34},{opacity:1,offset:.62},{opacity:.55,offset:.72},{opacity:1}],T.cubeLit,'linear');
+ A(q('.halo'),[{opacity:0},{opacity:0,offset:.3},{opacity:1}],[300,1300],'linear');
+ // highlighter swipe draws on behind the phrase (text itself is visible throughout)
+ A(q('.swipe'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],T.swipe);
+ // base text is Paper (readable on the dark stage); a Dusk copy is revealed in step with the swipe so the text is never low-contrast. Default CSS (no JS): swipe visible, Dusk text on top.
+ A(q('.top'),[{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],T.swipe);
+ // panels drift into orbit
+ ['.p1','.p2','.p3'].forEach((s,i)=>A(q(s),[{opacity:0,transform:`translate(${[40,-30,30][i]}px,${[-24,28,24][i]}px) rotate(${[8,-8,6][i]}deg) scale(.92)`},{opacity:1,transform:`translate(0,0) rotate(${[3,-3,2][i]}deg) scale(1)`}],T.panels[i]));
+ root.querySelectorAll('.panel').forEach((p,i)=>p.style.transform=`rotate(${[3,-3,2][i]}deg)`);
+ return a;
+}
+function fit(w){const s=w.clientWidth/1440;w.querySelector('.fr').style.transform=`scale(${s})`;w.style.height=820*s+'px'}
+
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const params=new URLSearchParams(location.search);
+const main=build(document.getElementById('main'));
+let anims=animate(main);
+const seek=(arr,t)=>arr.forEach(x=>{x.pause();x.currentTime=t});
+function replay(){anims.forEach(x=>x.cancel());anims=animate(main);if(reduced)seek(anims,T.settle);}
+document.getElementById('play').onclick=replay;
+if(reduced)seek(anims,T.settle);
+
+/* frame strip: the same scene, paused at fixed times */
+const times=[0,200,400,600,900,1200,1500,1800];
+const sheet=document.getElementById('sheet');
+times.forEach(t=>{const f=document.createElement('figure');const w=document.createElement('div');w.className='fw';f.append(w);const c=document.createElement('figcaption');c.textContent=(t/1000).toFixed(1)+' s';f.append(c);sheet.append(f);build(w);seek(animate(w),t);});
+
+document.getElementById('tl').innerHTML=`<b>Timeline</b>
+ <div class="row"><span style="left:0">Headline, copy, buttons: visible from 0 s</span><i style="left:0;width:100%;background:#FFFCF244"></i></div>
+ <div class="row"><span style="left:${300/18}%">Cube seams flicker on 0.3 to 1.0 s</span><i style="left:${300/18}%;width:${700/18}%;background:var(--sun)"></i></div>
+ <div class="row"><span style="left:${700/18}%">Panels drift in 0.7 to 1.65 s</span><i style="left:${700/18}%;width:${950/18}%;background:var(--mint)"></i></div>
+ <div class="row"><span style="left:${850/18}%">Highlighter swipe draws 0.85 to 1.45 s</span><i style="left:${850/18}%;width:${600/18}%;background:var(--coral)"></i></div>`;
+
+function fitAll(){document.querySelectorAll('.fw').forEach(fit)}
+addEventListener('resize',fitAll);addEventListener('load',fitAll);fitAll();
+if(params.get('only')==='strip'){document.querySelector('h1').style.display='none';document.querySelectorAll('.l,.ctl,#main,#tl').forEach(e=>e.style.display='none');document.getElementById('page').style.maxWidth='1500px';document.getElementById('sheet').style.gridTemplateColumns='repeat(4,1fr)';fitAll();}
+</script>
+</body></html>

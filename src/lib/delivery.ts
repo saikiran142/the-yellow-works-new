@@ -35,19 +35,37 @@ export async function deliverEnquiry(
     phone: normalisePhone(enquiry.phone),
     message: enquiry.message.trim(),
   };
+  // Google Apps Script treats any Authorization header as an OAuth token and rejects a non-Google one,
+  // so for Apps Script the secret travels only in the URL (?key=...). Other webhooks still get the header.
+  const sendBearer = Boolean(cfg.secret) && !isAppsScript(cfg.url);
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), cfg.timeoutMs ?? 8000);
   try {
     const res = await fetchImpl(cfg.url, {
       method: "POST",
-      headers: { "content-type": "application/json", "idempotency-key": key, ...(cfg.secret ? { authorization: `Bearer ${cfg.secret}` } : {}) },
+      headers: { "content-type": "application/json", "idempotency-key": key, ...(sendBearer ? { authorization: `Bearer ${cfg.secret}` } : {}) },
       body: JSON.stringify(payload),
       signal: ctrl.signal,
     });
-    return res.ok ? { ok: true } : { ok: false, reason: "failed" };
+    if (!res.ok) return { ok: false, reason: "failed" };
+    // Apps Script always answers HTTP 200, even for "unauthorized" or "bad_json"; the real result is in the JSON body.
+    // A JSON body with ok:false is a failure, so the visitor is told to retry instead of the enquiry being lost.
+    if ((res.headers.get("content-type") ?? "").includes("application/json")) {
+      const body: unknown = await res.json().catch(() => null);
+      if (body && typeof body === "object" && (body as { ok?: unknown }).ok === false) return { ok: false, reason: "failed" };
+    }
+    return { ok: true };
   } catch {
     return { ok: false, reason: "failed" };
   } finally {
     clearTimeout(timer);
+  }
+}
+
+function isAppsScript(url: string): boolean {
+  try {
+    return new URL(url).hostname === "script.google.com";
+  } catch {
+    return false;
   }
 }

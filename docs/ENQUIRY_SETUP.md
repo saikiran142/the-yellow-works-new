@@ -1,3 +1,5 @@
+> **Superseded** by `docs/integrations/ENQUIRY_SETUP.md` and `docs/integrations/enquiry-apps-script.gs`. Kept for history.
+
 # Enquiry delivery setup (decision D-08)
 
 **Chosen:** a Google Sheet that receives every enquiry, plus an email notification to `contact@theyellowworks.com`. It is done with a small Google Apps Script "web app" that the website posts to.

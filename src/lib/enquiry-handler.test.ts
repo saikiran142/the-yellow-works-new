@@ -115,6 +115,19 @@ describe("deliverEnquiry", () => {
     expect((await deliverEnquiry(valid, KEY, { url: "https://x.test" }, (async () => new Response("", { status: 500 })) as unknown as typeof fetch))).toEqual({ ok: false, reason: "failed" });
     expect((await deliverEnquiry(valid, KEY, { url: "https://x.test" }, (async () => { throw new Error("net"); }) as unknown as typeof fetch))).toEqual({ ok: false, reason: "failed" });
   });
+  it("reports failure when a 200 JSON reply says ok:false (Apps Script errors)", async () => {
+    const reply = (o: unknown) => (async () => new Response(JSON.stringify(o), { status: 200, headers: { "content-type": "application/json; charset=utf-8" } })) as unknown as typeof fetch;
+    expect(await deliverEnquiry(valid, KEY, { url: "https://x.test" }, reply({ ok: false, error: "unauthorized" }))).toEqual({ ok: false, reason: "failed" });
+    expect(await deliverEnquiry(valid, KEY, { url: "https://x.test" }, reply({ ok: true }))).toEqual({ ok: true });
+    expect(await deliverEnquiry(valid, KEY, { url: "https://x.test" }, reply({ ok: true, duplicate: true }))).toEqual({ ok: true });
+  });
+  it("does not send an Authorization header to Google Apps Script", async () => {
+    const f = vi.fn(async () => new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "content-type": "application/json" } }));
+    const r = await deliverEnquiry(valid, KEY, { url: "https://script.google.com/macros/s/ID/exec?key=k", secret: "s3" }, f as unknown as typeof fetch);
+    expect(r).toEqual({ ok: true });
+    const [, init] = f.mock.calls[0] as unknown as [string, RequestInit];
+    expect((init.headers as Record<string, string>).authorization).toBeUndefined();
+  });
   it("is not_configured without a url", async () => {
     expect(await deliverEnquiry(valid, KEY, {})).toEqual({ ok: false, reason: "not_configured" });
   });
